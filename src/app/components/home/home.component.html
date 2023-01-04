@@ -171,23 +171,8 @@
         <app-termsofuse *ngSwitchCase="'termsofuse'"></app-termsofuse>
         <app-privacy *ngSwitchCase="'privacy'"></app-privacy>
         <ng-container *ngSwitchCase="'test'">
-            <mat-grid-list cols="1" gutterSize="5px" rowHeight="500px" [style.margin]="'5px 5px 5px 5px'">
-                <mat-grid-tile>
-                    <mat-grid-tile-header>
-                        <div>
-                            <div>
-                                <mat-icon class="logo">search</mat-icon>
-                                <span>{{'find.title' | translate}}</span>
-                            </div>
-                        </div>
-                    </mat-grid-tile-header>
-                    <div class="mat-grid-tile-text mat-grid-tile-no-footer">
-                        <p>{{'find.description.1' | translate}}</p>
-                        <p>{{'find.description.2' | translate}}</p>
-                        <p>{{'find.description.3' | translate}}</p>
-                    </div>
-                </mat-grid-tile>
-            </mat-grid-list>
+            {{el}}
+            {{el.offsetWidth}}
         </ng-container>
     </ng-container>
 </ng-template>

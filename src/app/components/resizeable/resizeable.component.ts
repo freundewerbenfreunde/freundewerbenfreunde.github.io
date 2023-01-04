@@ -7,7 +7,7 @@ import { AbstractComponent } from '../abstract/abstract.component';
 })
 export abstract class ResizeableComponent extends AbstractComponent implements OnInit {
 
-  private el: HTMLElement;
+  el: HTMLElement;
 
   cols: number = 1;
   gutter: number = 16;
