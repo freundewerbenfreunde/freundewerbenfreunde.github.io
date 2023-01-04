@@ -1,4 +1,4 @@
-<div style="width: 100%;">
+<div #container>
     <ng-container *ngTemplateOutlet="altPage ? altPageTemplate : defaultTemplate; context: { $implicit: altPage }">
     </ng-container>
 </div>
@@ -173,6 +173,7 @@
         <ng-container *ngSwitchCase="'test'">
             {{el}}
             {{el.offsetWidth}}
+            {{container.offsetWidth}}
         </ng-container>
     </ng-container>
 </ng-template>
