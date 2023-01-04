@@ -85,7 +85,7 @@ export class OfferDialogComponent {
     }
     offer['link'] = this.form.value.link;
     if (this.form.value.expireAt) {
-      offer['expireAt'] = this.form.value.expireAt.add(1, 'd').set('hour', 0).toDate();
+      offer['expireAt'] = this.form.value.expireAt.toDate();
     }
     if (this.offerKey) {
       this.fwfService.updateOffer(this.offerKey, offer).subscribe();
