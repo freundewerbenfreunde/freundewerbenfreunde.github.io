@@ -22,8 +22,8 @@ export class HomeComponent extends ResizeableComponent {
   allApps: ObjectType[] = [];
   apps: ObjectType[] = [];
 
-  constructor(el: ElementRef, fwfService: FWFService, route: ActivatedRoute, private dialog: MatDialog) {
-    super(el, fwfService);
+  constructor(fwfService: FWFService, route: ActivatedRoute, private dialog: MatDialog) {
+    super(fwfService);
     route.queryParamMap.subscribe(queryParamMap => {
       this.altPage = queryParamMap.get('page');
     });

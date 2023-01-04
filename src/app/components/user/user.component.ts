@@ -17,8 +17,8 @@ export class UserComponent extends ResizeableComponent {
   show?: string;
   sortBy: string = 'updated';
 
-  constructor(el: ElementRef, router: Router, fwfService: FWFService) {
-    super(el, fwfService);
+  constructor(router: Router, fwfService: FWFService) {
+    super(fwfService);
     this.userKey = router.url.split('/')[2];
   }
 

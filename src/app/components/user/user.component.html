@@ -1,4 +1,4 @@
-<div>
+<div #container>
     <ng-container
         *ngTemplateOutlet="user ? user['key'] == 'notfound'? userNotFoundTemplate: defaultTemplate : loadingTemplate">
     </ng-container>

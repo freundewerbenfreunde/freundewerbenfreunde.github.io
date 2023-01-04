@@ -19,8 +19,8 @@ export class AppComponent extends ResizeableComponent {
   show?: string;
   sortBy: string = 'updated';
 
-  constructor(el: ElementRef, router: Router, fwfService: FWFService, private dialog: MatDialog) {
-    super(el, fwfService);
+  constructor(router: Router, fwfService: FWFService, private dialog: MatDialog) {
+    super(fwfService);
     this.appKey = router.url.split('/')[2];
   }
 

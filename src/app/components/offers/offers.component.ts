@@ -15,8 +15,8 @@ export class OffersComponent extends ResizeableComponent {
   sortBy: string = 'appName';
   offers: ObjectType[] = [];
 
-  constructor(el: ElementRef, fwfService: FWFService, private dialog: MatDialog) {
-    super(el, fwfService);
+  constructor(fwfService: FWFService, private dialog: MatDialog) {
+    super(fwfService);
   }
 
   protected override handleUser(user?: ObjectType): void {

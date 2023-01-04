@@ -170,12 +170,5 @@
         <app-account-deletion *ngSwitchCase="'deletion'"></app-account-deletion>
         <app-termsofuse *ngSwitchCase="'termsofuse'"></app-termsofuse>
         <app-privacy *ngSwitchCase="'privacy'"></app-privacy>
-        <ng-container *ngSwitchCase="'test'">
-            el {{el}}
-            {{el.offsetWidth}}
-            container {{container.offsetWidth}}
-            div <div *ngIf="div">
-                {{div.nativeElement.offsetWidth}}</div>
-        </ng-container>
     </ng-container>
 </ng-template>
