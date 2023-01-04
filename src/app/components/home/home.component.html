@@ -1,159 +1,177 @@
-<div class="mat-toolbar">
-    <form>
-        <mat-form-field>
-            <input type="text" matInput placeholder="{{'search' | translate}}" name="search" [(ngModel)]="search">
-            <button matSuffix mat-button (click)="searchApp()">
-                <mat-icon>search</mat-icon>
-            </button>
-        </mat-form-field>
-        <p>
-            <mat-chip-listbox aria-label="choose category" (change)="selectCategory($event.value)">
-                <mat-chip-option *ngFor="let category of categories" value="{{category['key']}}">
-                    {{category['name']}}
-                </mat-chip-option>
-            </mat-chip-listbox>
-        </p>
-        <p>
-            <a *ngFor="let app of allApps" [routerLink]="'/apps/' + app['key']"
-                matTooltip="{{app['name']}}">
-                <img src="{{app['img']}}" height="64px" />
-            </a>
-        </p>
-        <div class="sort-and-filter">
-            <div>
-                <mat-icon>sort</mat-icon>
-                <mat-button-toggle-group [value]="sortBy">
-                    <mat-button-toggle value="stats.likes" (click)="sort('stats.likes')" matTooltip="{{'sort.likes'|translate}}">
-                        <mat-icon>sentiment_very_satisfied</mat-icon>
-                    </mat-button-toggle>
-                    <mat-button-toggle value="offers" (click)="sort('offers')" matTooltip="{{'sort.offers'|translate}}">
-                        <mat-icon>local_offer</mat-icon>
-                    </mat-button-toggle>
-                </mat-button-toggle-group>
-            </div>
-            <div>
-                <mat-icon>tune</mat-icon>
-                <mat-button-toggle-group [value]="source">
-                    <mat-button-toggle value="appstore" (click)="filter('appstore')"
-                        matTooltip="{{'filter.appstore'|translate}}">
-                        <img src="https://www.apple.com/favicon.ico" height="32px" />
-                    </mat-button-toggle>
-                    <mat-button-toggle value="playstore" (click)="filter('playstore')"
-                        matTooltip="{{'filter.playstore'|translate}}">
-                        <img src="https://www.gstatic.com/android/market_images/web/favicon_v3.ico" height="24px" />
-                    </mat-button-toggle>
-                    <mat-button-toggle value="web" (click)="filter('web')" matTooltip="{{'filter.web'|translate}}">
-                        <mat-icon>computer</mat-icon>
-                    </mat-button-toggle>
-                </mat-button-toggle-group>
-            </div>
-        </div>
-    </form>
-</div>
-<mat-grid-list *ngIf="(search || category) && apps.length > 0" [cols]="cols" [gutterSize]="gutter + 'px'"
-    [rowHeight]="rowHeight + 'px'" [style.margin]="gutter + 'px ' + margin + 'px ' + gutter + 'px ' + margin + 'px'">
-    <mat-grid-tile *ngFor="let app of apps">
-        <mat-grid-tile-header>
-            <div>
-                <div>
-                    <a class="logo" [routerLink]="'/apps/' + app['key']">
-                        <img src="{{app['img']}}" height="48px" />
+<div>
+    <ng-container *ngTemplateOutlet="altPage ? altPageTemplate : defaultTemplate; context: { $implicit: altPage }">
+    </ng-container>
+    <ng-template #defaultTemplate>
+        <div class="mat-toolbar">
+            <form>
+                <mat-form-field>
+                    <input type="text" matInput placeholder="{{'search' | translate}}" name="search"
+                        [(ngModel)]="search">
+                    <button matSuffix mat-button (click)="searchApp()">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
+                <p>
+                    <mat-chip-listbox aria-label="choose category" (change)="selectCategory($event.value)">
+                        <mat-chip-option *ngFor="let category of categories" value="{{category['key']}}">
+                            {{category['name']}}
+                        </mat-chip-option>
+                    </mat-chip-listbox>
+                </p>
+                <p>
+                    <a *ngFor="let app of allApps" [routerLink]="'/apps/' + app['key']" matTooltip="{{app['name']}}">
+                        <img src="{{app['img']}}" height="64px" />
                     </a>
-                    <span>{{app['name']}}</span>
+                </p>
+                <div class="sort-and-filter">
+                    <div>
+                        <mat-icon>sort</mat-icon>
+                        <mat-button-toggle-group [value]="sortBy">
+                            <mat-button-toggle value="stats.likes" (click)="sort('stats.likes')"
+                                matTooltip="{{'sort.likes'|translate}}">
+                                <mat-icon>sentiment_very_satisfied</mat-icon>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="offers" (click)="sort('offers')"
+                                matTooltip="{{'sort.offers'|translate}}">
+                                <mat-icon>local_offer</mat-icon>
+                            </mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
+                    <div>
+                        <mat-icon>tune</mat-icon>
+                        <mat-button-toggle-group [value]="source">
+                            <mat-button-toggle value="appstore" (click)="filter('appstore')"
+                                matTooltip="{{'filter.appstore'|translate}}">
+                                <img src="https://www.apple.com/favicon.ico" height="32px" />
+                            </mat-button-toggle>
+                            <mat-button-toggle value="playstore" (click)="filter('playstore')"
+                                matTooltip="{{'filter.playstore'|translate}}">
+                                <img src="https://www.gstatic.com/android/market_images/web/favicon_v3.ico"
+                                    height="24px" />
+                            </mat-button-toggle>
+                            <mat-button-toggle value="web" (click)="filter('web')"
+                                matTooltip="{{'filter.web'|translate}}">
+                                <mat-icon>computer</mat-icon>
+                            </mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
                 </div>
-            </div>
-        </mat-grid-tile-header>
-        <div class="mat-grid-tile-text">
-            <p *ngFor="let desc of (app['description'] | toList)">{{desc}}</p>
+            </form>
         </div>
-        <mat-grid-tile-footer>
-            <div>
-                <a mat-flat-button color="accent" [routerLink]="'/apps/' + app['key']">
-                    {{'show-offers' | translate}}
-                </a>
-            </div>
-        </mat-grid-tile-footer>
-    </mat-grid-tile>
-</mat-grid-list>
-<mat-card>
-    <mat-card-header>
-        <mat-icon color="accent" mat-card-avatar>favorite</mat-icon>
-        <h3>{{'description.1' | translate}}</h3>
-    </mat-card-header>
-    <mat-card-content>
-        <p>{{'description.2' | translate}}</p>
-        <p>{{'description.3' | translate}}</p>
-    </mat-card-content>
-</mat-card>
-<h4>{{'how' | translate}}</h4>
-<mat-grid-list [cols]="cols" [gutterSize]="gutter + 'px'" [rowHeight]="rowHeight + 'px'"
-    [style.margin]="gutter + 'px ' + margin + 'px ' + gutter + 'px ' + margin + 'px'">
-    <mat-grid-tile>
-        <mat-grid-tile-header>
-            <div>
-                <div>
-                    <mat-icon class="logo">search</mat-icon>
-                    <span>{{'find.title' | translate}}</span>
+        <mat-grid-list *ngIf="(search || category) && apps.length > 0" [cols]="cols" [gutterSize]="gutter + 'px'"
+            [rowHeight]="rowHeight + 'px'"
+            [style.margin]="gutter + 'px ' + margin + 'px ' + gutter + 'px ' + margin + 'px'">
+            <mat-grid-tile *ngFor="let app of apps">
+                <mat-grid-tile-header>
+                    <div>
+                        <div>
+                            <a class="logo" [routerLink]="'/apps/' + app['key']">
+                                <img src="{{app['img']}}" height="48px" />
+                            </a>
+                            <span>{{app['name']}}</span>
+                        </div>
+                    </div>
+                </mat-grid-tile-header>
+                <div class="mat-grid-tile-text">
+                    <p *ngFor="let desc of (app['description'] | toList)">{{desc}}</p>
                 </div>
-            </div>
-        </mat-grid-tile-header>
-        <div class="mat-grid-tile-text mat-grid-tile-no-footer">
-            <p>{{'find.description.1' | translate}}</p>
-            <p>{{'find.description.2' | translate}}</p>
-            <p>{{'find.description.3' | translate}}</p>
-        </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-grid-tile-header>
-            <div>
-                <div>
-                    <mat-icon class="logo">content_cut</mat-icon>
-                    <span>{{'use.title' | translate}}</span>
+                <mat-grid-tile-footer>
+                    <div>
+                        <a mat-flat-button color="accent" [routerLink]="'/apps/' + app['key']">
+                            {{'show-offers' | translate}}
+                        </a>
+                    </div>
+                </mat-grid-tile-footer>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <mat-card>
+            <mat-card-header>
+                <mat-icon color="accent" mat-card-avatar>favorite</mat-icon>
+                <h3>{{'description.1' | translate}}</h3>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{'description.2' | translate}}</p>
+                <p>{{'description.3' | translate}}</p>
+            </mat-card-content>
+        </mat-card>
+        <h4>{{'how' | translate}}</h4>
+        <mat-grid-list [cols]="cols" [gutterSize]="gutter + 'px'" [rowHeight]="rowHeight + 'px'"
+            [style.margin]="gutter + 'px ' + margin + 'px ' + gutter + 'px ' + margin + 'px'">
+            <mat-grid-tile>
+                <mat-grid-tile-header>
+                    <div>
+                        <div>
+                            <mat-icon class="logo">search</mat-icon>
+                            <span>{{'find.title' | translate}}</span>
+                        </div>
+                    </div>
+                </mat-grid-tile-header>
+                <div class="mat-grid-tile-text mat-grid-tile-no-footer">
+                    <p>{{'find.description.1' | translate}}</p>
+                    <p>{{'find.description.2' | translate}}</p>
+                    <p>{{'find.description.3' | translate}}</p>
                 </div>
-            </div>
-        </mat-grid-tile-header>
-        <div class="mat-grid-tile-text mat-grid-tile-no-footer">
-            <p>{{'use.description.1' | translate}}</p>
-            <p>{{'use.description.2' | translate}}</p>
-            <p>{{'use.description.3' | translate}}</p>
-            <p>{{'use.description.4' | translate}}</p>
-        </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-grid-tile-header>
-            <div>
-                <div>
-                    <mat-icon class="logo">post_add</mat-icon>
-                    <span>{{'publish.title' | translate}}</span>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-grid-tile-header>
+                    <div>
+                        <div>
+                            <mat-icon class="logo">content_cut</mat-icon>
+                            <span>{{'use.title' | translate}}</span>
+                        </div>
+                    </div>
+                </mat-grid-tile-header>
+                <div class="mat-grid-tile-text mat-grid-tile-no-footer">
+                    <p>{{'use.description.1' | translate}}</p>
+                    <p>{{'use.description.2' | translate}}</p>
+                    <p>{{'use.description.3' | translate}}</p>
+                    <p>{{'use.description.4' | translate}}</p>
                 </div>
-            </div>
-        </mat-grid-tile-header>
-        <div class="mat-grid-tile-text mat-grid-tile-no-footer">
-            <p>{{'publish.description.1' | translate}}</p>
-            <p>{{'publish.description.2' | translate}}</p>
-            <p>{{'publish.description.3' | translate}}</p>
-        </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-grid-tile-header>
-            <div>
-                <div>
-                    <mat-icon class="logo">engineering</mat-icon>
-                    <span>{{'missing-app.title' | translate}}</span>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-grid-tile-header>
+                    <div>
+                        <div>
+                            <mat-icon class="logo">post_add</mat-icon>
+                            <span>{{'publish.title' | translate}}</span>
+                        </div>
+                    </div>
+                </mat-grid-tile-header>
+                <div class="mat-grid-tile-text mat-grid-tile-no-footer">
+                    <p>{{'publish.description.1' | translate}}</p>
+                    <p>{{'publish.description.2' | translate}}</p>
+                    <p>{{'publish.description.3' | translate}}</p>
                 </div>
-            </div>
-        </mat-grid-tile-header>
-        <div class="{{'mat-grid-tile-text' + (me? '' : ' mat-grid-tile-no-footer')}}">
-            <p>{{'missing-app.description.1' | translate}}</p>
-            <p>{{'missing-app.description.2' | translate}}</p>
-            <p>{{'missing-app.description.3' | translate}}</p>
-        </div>
-        <mat-grid-tile-footer *ngIf="me">
-            <div >
-                <button mat-flat-button color="accent" (click)="openAppProposalDialog()">
-                    <mat-icon>description</mat-icon><span>{{'app.form'|translate}}</span>
-                </button>
-            </div>
-        </mat-grid-tile-footer>
-    </mat-grid-tile>
-</mat-grid-list>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-grid-tile-header>
+                    <div>
+                        <div>
+                            <mat-icon class="logo">engineering</mat-icon>
+                            <span>{{'missing-app.title' | translate}}</span>
+                        </div>
+                    </div>
+                </mat-grid-tile-header>
+                <div class="{{'mat-grid-tile-text' + (me? '' : ' mat-grid-tile-no-footer')}}">
+                    <p>{{'missing-app.description.1' | translate}}</p>
+                    <p>{{'missing-app.description.2' | translate}}</p>
+                    <p>{{'missing-app.description.3' | translate}}</p>
+                </div>
+                <mat-grid-tile-footer *ngIf="me">
+                    <div>
+                        <button mat-flat-button color="accent" (click)="openAppProposalDialog()">
+                            <mat-icon>description</mat-icon><span>{{'app.form'|translate}}</span>
+                        </button>
+                    </div>
+                </mat-grid-tile-footer>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </ng-template>
+</div>
+<ng-template #altPageTemplate let-page>
+    <ng-container [ngSwitch]="page">
+        <app-account-deletion *ngSwitchCase="'deletion'"></app-account-deletion>
+        <app-termsofuse *ngSwitchCase="'termsofuse'"></app-termsofuse>
+        <app-privacy *ngSwitchCase="'privacy'"></app-privacy>
+    </ng-container>
+</ng-template>

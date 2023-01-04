@@ -1,5 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { ObjectType } from 'deta/dist/types/types/basic';
 import { FWFService } from 'src/app/services/fwf.service';
 import { AppDialogComponent } from '../app-dialog/app-dialog.component';
@@ -12,6 +13,7 @@ import { ResizeableComponent } from '../resizeable/resizeable.component';
 })
 export class HomeComponent extends ResizeableComponent {
 
+  altPage: string | null = null;
   search?: string;
   category?: string;
   sortBy: string = 'name';
@@ -20,8 +22,11 @@ export class HomeComponent extends ResizeableComponent {
   allApps: ObjectType[] = [];
   apps: ObjectType[] = [];
 
-  constructor(el: ElementRef, fwfService: FWFService, private dialog: MatDialog) {
+  constructor(el: ElementRef, fwfService: FWFService, route: ActivatedRoute, private dialog: MatDialog) {
     super(el, fwfService);
+    route.queryParamMap.subscribe(queryParamMap => {
+      this.altPage = queryParamMap.get('page');
+    });
   }
 
   override ngOnInit(): void {
