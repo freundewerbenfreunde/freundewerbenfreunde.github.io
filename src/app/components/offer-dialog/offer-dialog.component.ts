@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ObjectType } from 'deta/dist/types/types/basic';
+import { Observable } from 'rxjs';
 import { FWFService } from 'src/app/services/fwf.service';
 
 @Component({
@@ -18,7 +19,9 @@ export class OfferDialogComponent {
   private offerKey?: string;
   private appKey?: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fwfService: FWFService, formBuilder: FormBuilder) {
+  constructor(private dialogRef: MatDialogRef<OfferDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private fwfService: FWFService, formBuilder: FormBuilder) {
     this.form = formBuilder.group({
       title: ['', [Validators.required, Validators.maxLength(200)]],
       description: ['', [Validators.required, Validators.maxLength(1200)]],
@@ -88,9 +91,17 @@ export class OfferDialogComponent {
       offer['expireAt'] = this.form.value.expireAt.toDate();
     }
     if (this.offerKey) {
-      this.fwfService.updateOffer(this.offerKey, offer).subscribe();
+      this.fwfService.updateOffer(this.offerKey, offer).subscribe({
+        next: () => {
+          this.dialogRef.close();
+        }
+      });
     } else {
-      this.fwfService.createOffer(offer).subscribe();
+      this.fwfService.createOffer(offer).subscribe({
+        next: () => {
+          this.dialogRef.close();
+        }
+      });
     }
   }
 
