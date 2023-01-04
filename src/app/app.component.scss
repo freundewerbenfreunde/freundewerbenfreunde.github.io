@@ -1,0 +1,81 @@
+.theme {
+    height: 100%;
+}
+
+.mat-app-background {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-shrink: 1;
+    flex-grow: 1;
+    position: relative;
+    overflow-y: auto;
+}
+
+header {
+    .mat-toolbar {
+        justify-content: space-between;
+
+        .logo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img {
+                margin-right: 16px;
+            }
+
+            div {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        .mat-icon {
+            margin-right: 0px;
+        }
+
+        a {
+
+            &,
+            &:visited,
+            &:-webkit-any-link {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+footer {
+    .mat-toolbar {
+        justify-content: space-around;
+    }
+}
+
+.fb-login-button {
+    display: inline-block;
+    vertical-align: middle;
+    background: #1877f2;
+
+    img {
+        vertical-align: middle;
+        display: inline-block;
+        margin-right: 8px;
+        border-radius: 4px;
+    }
+
+    span {
+        display: inline-block;
+        color: #fff;
+        letter-spacing: .25px;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 16px;
+    }
+}

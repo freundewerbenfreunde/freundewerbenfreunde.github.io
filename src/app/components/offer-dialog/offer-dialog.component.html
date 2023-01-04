@@ -1,0 +1,47 @@
+<h3 mat-dialog-title>{{(edit? 'offer.edit' : 'offer.add') | translate}}</h3>
+<mat-dialog-content class="mat-typography">
+    <div *ngIf="appImg && appName">
+        <div class="app"><img src="{{appImg}}" width="48px" height="48px" /><span>{{appName}}</span>
+        </div>
+        <form [formGroup]="form">
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>{{'offer.title' | translate}}</mat-label>
+                    <input type="text" matInput name="title" formControlName="title" />
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>{{'offer.description' | translate}}</mat-label>
+                    <textarea matInput name="description" formControlName="description" rows="6"></textarea>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>{{'offer.code' | translate}}</mat-label>
+                    <input type="text" matInput name="code" formControlName="code">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>{{'offer.link' | translate}}</mat-label>
+                    <input type="text" matInput name="link" formControlName="link">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>{{'offer.expire-at' | translate}}</mat-label>
+                    <input matInput [matDatepicker]="picker" name="expireAt" formControlName="expireAt">
+                    <mat-hint>DD.MM.YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+            </p>
+        </form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-flat-button color="accent" mat-dialog-close>{{'cancel' | translate}}</button>
+    <button mat-flat-button color="accent" (click)="createOrUpdateOffer()" mat-dialog-close [disabled]="form.invalid">{{'save' |
+        translate}}</button>
+</mat-dialog-actions>

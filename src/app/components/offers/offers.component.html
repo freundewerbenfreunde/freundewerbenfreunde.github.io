@@ -1,0 +1,83 @@
+<div>
+    <h3>{{'offers' | translate}}</h3>
+    <div class="mat-toolbar">
+        <div>
+            <mat-icon>sort</mat-icon>
+            <mat-button-toggle-group [value]="sortBy">
+                <mat-button-toggle value="updated" (click)="sort('updated')"
+                    matTooltip="{{'sort.updated' | translate}}">
+                    <mat-icon>sync</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle value="stats.likes" (click)="sort('stats.likes')"
+                    matTooltip="{{'sort.likes' | translate}}">
+                    <mat-icon>sentiment_very_satisfied</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle value="stats.views" (click)="sort('stats.views')"
+                    matTooltip="{{'sort.views' | translate}}">
+                    <mat-icon>visibility</mat-icon>
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+        <div>
+            <span>{{'offer.count' | translate:{count:offers.length} }}</span>
+        </div>
+    </div>
+    <div *ngIf="me">
+        <mat-grid-list [cols]="cols" [gutterSize]="gutter + 'px'" [rowHeight]="rowHeight + 'px'"
+            [style.margin]="gutter + 'px ' + margin + 'px ' + gutter + 'px ' + margin + 'px'">
+            <mat-grid-tile *ngFor="let offer of offers">
+                <mat-grid-tile-header>
+                    <div>
+                        <div>
+                            <a class="logo" [routerLink]="'/apps/' + offer['app']">
+                                <img src="{{offer['appImg']}}" height="48px" />
+                            </a>
+                            <div>
+                                <span>{{offer['appName']}}</span>
+                                <div>
+                                    <div matTooltip="{{'offer.updated'|translate}}">
+                                        <mat-icon>sync</mat-icon>
+                                        <span>{{offer['updated'] | toDatetime}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button mat-button (click)="editOffer(offer['key'])">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-button (click)="deleteOffer(offer['key'])">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-grid-tile-header>
+                <div class="mat-grid-tile-text">
+                    <h4>{{offer['title']}}</h4>
+                    <p *ngFor="let desc of (offer['description'] | toList)">{{desc}}</p>
+                    <p *ngIf="offer['code']">{{offer['code']}}</p>
+                    <p>{{offer['link']}}</p>
+                    <p *ngIf="offer['expireAt']">
+                        <span>{{'offer.expire-at'|translate}}: </span>
+                        <span>{{offer['expireAt'] | toDate}}</span>
+                    </p>
+                </div>
+                <mat-grid-tile-footer>
+                    <div>
+                        <mat-chip-set>
+                            <mat-chip>
+                                <mat-icon>visibility</mat-icon><span>{{offer|getStat:'views'}}</span>
+                            </mat-chip>
+                            <mat-chip>
+                                <mat-icon>sentiment_very_satisfied</mat-icon><span>{{offer|getStat:'likes'}}</span>
+                            </mat-chip>
+                            <mat-chip>
+                                <mat-icon>warning</mat-icon><span>{{offer|getStat:'warnings'}}</span>
+                            </mat-chip>
+                        </mat-chip-set>
+                    </div>
+                </mat-grid-tile-footer>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>

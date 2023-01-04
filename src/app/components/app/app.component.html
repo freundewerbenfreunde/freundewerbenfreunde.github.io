@@ -1,0 +1,146 @@
+<div>
+    <div *ngIf="app; else appNotFoundTemplate">
+        <mat-card>
+            <mat-card-header>
+                <img mat-card-avatar src="{{app['img']}}" />
+                <mat-card-title>
+                    <span>{{app['name']}}</span>
+                </mat-card-title>
+                <mat-card-subtitle>
+                    <div *ngFor="let source of (app['sources'] | toList)">
+                        <ng-container [ngSwitch]="source">
+                            <mat-icon *ngSwitchCase="'web'" matTooltip="{{'filter.web'|translate}}">computer
+                            </mat-icon>
+                            <img *ngSwitchCase="'appstore'" src="https://www.apple.com/favicon.ico" height="32px"
+                                matTooltip="{{'filter.appstore'|translate}}" />
+                            <img *ngSwitchCase="'playstore'"
+                                src="https://www.gstatic.com/android/market_images/web/favicon_v3.ico" height="24px"
+                                matTooltip="{{'filter.playstore'|translate}}" />
+                        </ng-container>
+                    </div>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p *ngFor="let desc of (app['description'] | toList)">{{desc}}</p>
+            </mat-card-content>
+            <mat-card-footer>
+                <mat-button-toggle-group multiple [value]="getAppStats()">
+                    <mat-button-toggle [disabled]="me == undefined" value="likes" (click)="toggleAppStat('likes')">
+                        <mat-icon>sentiment_very_satisfied</mat-icon><span>{{app|getStat:'likes'}}</span>
+                    </mat-button-toggle>
+                    <mat-button-toggle [disabled]="me == undefined" value="warnings"
+                        (click)="toggleAppStat('warnings')">
+                        <mat-icon>warning</mat-icon><span>{{app|getStat:'warnings'}}</span>
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+                <div>
+                    <button *ngIf="!hasOffer()" mat-flat-button color="accent" (click)="addOffer(app['key'])">
+                        <mat-icon>add</mat-icon>{{'offer.add'|translate}}
+                    </button>
+                </div>
+            </mat-card-footer>
+        </mat-card>
+        <div class="mat-toolbar">
+            <div>
+                <mat-icon>sort</mat-icon>
+                <mat-button-toggle-group [value]="sortBy">
+                    <mat-button-toggle value="stats.likes" (click)="sort('stats.likes')"
+                        matTooltip="{{'sort.likes' | translate}}">
+                        <mat-icon>sentiment_very_satisfied</mat-icon>
+                    </mat-button-toggle>
+                    <mat-button-toggle value="stats.views" (click)="sort('stats.views')"
+                        matTooltip="{{'sort.views' | translate}}">
+                        <mat-icon>visibility</mat-icon>
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <div>
+                <span>{{'offer.count' | translate:{count:offers.length} }}</span>
+            </div>
+        </div>
+        <mat-grid-list [cols]="cols" [gutterSize]="gutter + 'px'" [rowHeight]="rowHeight + 'px'"
+            [style.margin]="gutter + 'px ' + margin + 'px ' + gutter + 'px ' + margin + 'px'">
+            <mat-grid-tile *ngFor="let offer of offers">
+                <mat-grid-tile-header>
+                    <div>
+                        <div>
+                            <a class="logo" routerLink="{{'/users/' + offer['user']}}">
+                                <img src="{{offer['userImg']}}" height="48px" width="48px" />
+                            </a>
+                            <div>
+                                <span>{{offer['userName']}}</span>
+                                <div>
+                                    <div matTooltip="{{'offer.updated'|translate}}">
+                                        <mat-icon>sync</mat-icon>
+                                        <span>{{offer['updated'] | toDate}}</span>
+                                    </div>
+                                    <div *ngIf="offer['expireAt']" matTooltip="{{'offer.expire-at'|translate}}">
+                                        <mat-icon>access_time_filled</mat-icon>
+                                        <span>{{offer['expireAt'] | toDate}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button mat-button (click)="show != offer['key'] ? showOffer(offer['key']) : hideOffer()"
+                                matTooltip="{{(show != offer['key'] ? 'offer.show' : 'offer.hide') | translate}}">
+                                <mat-icon>{{show != offer['key']? 'visibility' : 'visibility_off'}}</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-grid-tile-header>
+                <div class="mat-grid-tile-text mat-grid-tile-double-footer">
+                    <h4>{{offer['title']}}</h4>
+                    <p *ngFor="let desc of (offer['description'] | toList)">{{desc}}</p>
+                </div>
+                <mat-grid-tile-footer class="double-footer">
+                    <div>
+                        <mat-button-toggle-group multiple [value]="getOfferStats(offer['key'])">
+                            <mat-button-toggle [disabled]="me == undefined" value="likes"
+                                (click)="toggleOfferStat(offer['key'], 'likes')">
+                                <mat-icon>sentiment_very_satisfied</mat-icon><span>{{offer|getStat:'likes'}}</span>
+                            </mat-button-toggle>
+                            <mat-button-toggle [disabled]="me == undefined" value="warnings"
+                                (click)="toggleOfferStat(offer['key'], 'warnings')">
+                                <mat-icon>warning</mat-icon><span>{{offer|getStat:'warnings'}}</span>
+                            </mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
+                    <div>
+                        <ng-container *ngIf="show == offer['key']; else disabledTemplate">
+                            <button *ngIf="offer['code']" [cdkCopyToClipboard]="'' + offer['code']" mat-flat-button
+                                color="accent" aria-label="copy code to clipboard">
+                                <mat-icon>content_cut</mat-icon>
+                                <span>{{'copy-to-clipboard' | translate}}</span>
+                            </button>
+                            <a color="accent" mat-flat-button color="accent" aria-label="open registration page"
+                                href="{{offer['link']}}" target="_blank">
+                                <mat-icon>open_in_new</mat-icon>
+                                <span>{{'register' | translate}}</span>
+                            </a>
+                        </ng-container>
+                        <ng-template #disabledTemplate>
+                            <div matTooltip="{{'offer.disabled'|translate}}">
+                                <button *ngIf="offer['code']" mat-flat-button aria-label="copy code to clipboard"
+                                    disabled>
+                                    <mat-icon>content_cut</mat-icon>
+                                    <span>{{'copy-to-clipboard' | translate}}</span>
+                                </button>
+                                <a mat-flat-button aria-label="open registration page" disabled>
+                                    <mat-icon>open_in_new</mat-icon>
+                                    <span>{{'register' | translate}}</span>
+                                </a>
+                            </div>
+                        </ng-template>
+                    </div>
+                </mat-grid-tile-footer>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>
+<ng-template #appNotFoundTemplate>
+    <div class="not-found">
+        <mat-icon>sentiment_very_dissatisfied</mat-icon>
+        <span>{{'app.not-found'|translate}}</span>
+    </div>
+</ng-template>

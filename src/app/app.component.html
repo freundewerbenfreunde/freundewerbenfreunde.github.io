@@ -1,0 +1,69 @@
+<div [ngClass]="{'dark-theme': isDarkTheme | async, 'theme': true}">
+  <div class="mat-app-background">
+    <header>
+      <mat-toolbar>
+        <a class="logo" routerLink="">
+          <img src="{{'assets/logo' + ((isDarkTheme | async) ? '-light' : '') + '.svg'}}" height="64px" />
+          <div>
+            <span><b>Freunde</b></span>
+            <span><b>werben</b></span>
+            <span><b>Freunde</b></span>
+          </div>
+        </a>
+        <div>
+          <button *ngIf="(isDarkTheme | async); else lightTemplate" mat-mini-fab color="accent"
+            (click)="setDarkTheme(false)">
+            <mat-icon>light_mode</mat-icon>
+          </button>
+          <ng-template #lightTemplate>
+            <button mat-mini-fab color="accent" (click)="setDarkTheme(true)">
+              <mat-icon>dark_mode</mat-icon>
+            </button>
+          </ng-template>
+        </div>
+        <div>
+          <button *ngIf="!me" class="fb-login-button" mat-button (click)="signInWithFB()">
+            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/U7MAWJlE6hZ.png" width="24" height="24" />
+            <span>{{'facebook-login' | translate}}</span>
+          </button>
+          <button *ngIf="me" class="fb-login-button" mat-button [matMenuTriggerFor]="menu">
+            <img src="{{me['img']}}" height="24" />
+            <span>{{me['name']}}</span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <a *ngIf="me" mat-menu-item routerLink="/profile">
+              <mat-icon>person</mat-icon><span>{{'profile.title' | translate}}</span>
+            </a>
+            <a *ngIf="me" mat-menu-item routerLink="/offers">
+              <mat-icon>local_offer</mat-icon><span>{{'offers' | translate}}</span>
+            </a>
+            <button mat-menu-item (click)="signOut()">
+              <mat-icon>logout</mat-icon>{{'logout' | translate}}
+            </button>
+          </mat-menu>
+        </div>
+      </mat-toolbar>
+    </header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+    <footer>
+      <mat-toolbar>
+        <div class="mat-small">
+          <a mat-button href="https://github.com/freundewerbenfreunde/freundewerbenfreunde.github.io"><img
+              src="{{'assets/GitHub-Mark' + ((isDarkTheme | async) ? '-Light' : '') + '-32px.png'}}" height="24px"
+              matTooltip="{{'source' | translate}}" /></a>
+          <a mat-button routerLink="/termsofuse">
+            {{'termsofuse'|translate}}
+          </a>
+          <a mat-button routerLink="/privacy">
+            {{'privacy'|translate}}
+          </a>
+          <a mat-button routerLink="/impressum">
+            {{'impressum'|translate}}
+          </a>
+        </div>
+      </mat-toolbar>
+    </footer>
+  </div>
+</div>

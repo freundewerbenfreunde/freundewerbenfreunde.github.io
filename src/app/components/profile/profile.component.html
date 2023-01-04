@@ -1,0 +1,66 @@
+<div class="profile">
+    <h3>{{'profile.title' | translate}}</h3>
+    <div *ngIf="me">
+        <form [formGroup]="userForm">
+            <p *ngIf="edit == 'name'; else nameReadOnlyTemplate">
+                <mat-form-field appearance="fill">
+                    <mat-label>{{'profile.name' | translate}}</mat-label>
+                    <input type="text" matInput name="name" formControlName="name" />
+                    <button matSuffix mat-button (click)="updateUser()">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                </mat-form-field>
+            </p>
+            <ng-template #nameReadOnlyTemplate>
+                <p>{{'profile.name' | translate}}:</p>
+                <p><span>{{userForm.value.name}}</span>
+                    <button mat-button (click)="editField('name')">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </p>
+            </ng-template>
+            <p *ngIf="edit == 'img'; else imgReadOnlyTemplate">
+                <mat-form-field appearance="fill">
+                    <mat-label>{{'profile.img' | translate}}</mat-label>
+                    <input type="text" matInput name="img" formControlName="img" />
+                    <mat-hint>{{'profile.img-hint' | translate}}</mat-hint>
+                    <button matSuffix mat-button (click)="updateUser()">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                </mat-form-field>
+            </p>
+            <ng-template #imgReadOnlyTemplate>
+                <p>{{'profile.img' | translate}}:</p>
+                <p><img src="{{userForm.value.img}}" height="48px" /><button mat-button (click)="editField('img')">
+                        <mat-icon>edit</mat-icon>
+                    </button></p>
+            </ng-template>
+        </form>
+        <p>{{'profile.reactions' | translate}}:</p>
+        <p>
+            <mat-chip-set>
+                <mat-chip>
+                    <mat-icon>sentiment_very_satisfied</mat-icon><span>{{me|getStat:'likes'}}</span>
+                </mat-chip>
+                <mat-chip>
+                    <mat-icon>warning</mat-icon><span>{{me|getStat:'warnings'}}</span>
+                </mat-chip>
+            </mat-chip-set>
+        </p>
+        <p>{{'profile.last-login' | translate}}:</p>
+        <p>{{me['lastLogin']|toDatetime}}</p>
+        <h4>{{'profile.delete'|translate}}</h4>
+        <form [formGroup]="deleteForm">
+            <p>
+                <mat-checkbox name="confirmation" formControlName="confirmation">
+                    {{'profile.confirmation' | translate}}
+                </mat-checkbox>
+            </p>
+            <p>
+                <button mat-flat-button color="warn" (click)="deleteUser()" [disabled]="deleteForm.invalid">
+                    <mat-icon>delete</mat-icon><span>{{'profile.delete'|translate}}</span>
+                </button>
+            </p>
+        </form>
+    </div>
+</div>

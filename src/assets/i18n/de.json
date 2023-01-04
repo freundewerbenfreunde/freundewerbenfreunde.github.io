@@ -1,0 +1,102 @@
+{
+    "source": "Quellcode",
+    "impressum": "Impressum",
+    "privacy": "Datenschutz",
+    "termsofuse": "AGB",
+    "facebook-login": "Weiter mit Facebook",
+    "sort": {
+        "likes": "Zufriedenheit",
+        "offers": "Anzahl der Angebote",
+        "views": "Anzahl der Ansichten",
+        "updated": "Aktualiserungszeit"
+    },
+    "filter": {
+        "appstore": "App Store",
+        "playstore": "Google Play",
+        "web": "Website"
+    },
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "send": "Verschicken",
+    "profile": {
+        "title": "Profil",
+        "name": "Name",
+        "img": "Profilbild",
+        "img-hint": "Link zu einem öffentlich verfügbaren Bild, das dir gehört",
+        "reactions": "Reaktionen",
+        "offers": "Anzahl Angebote",
+        "last-login": "Letzte Anmeldung",
+        "delete": "Profil löschen",
+        "confirmation": "Ja, ich will mein Konto unwiderruflich löschen. Die damit verbundenen Daten werden umgehend gelöscht. Eine Wiederherstellung der gelöschten Daten is nicht möglich."
+    },
+    "offers": "Meine Angebote",
+    "app": {
+        "form": "Zum Formular",
+        "add": "App oder Webseite vorschlagen",
+        "link": "Link zur App oder Webseite",
+        "notification": "Ja, ich will per Mail benachrichtigt werden, sobald die App oder Webseite aufgenommen worden ist. Die Email Adresse wird ausschließlich für die Benachrichtigung genutzt und anschließend gelöscht.",
+        "email": "Email Adresse",
+        "not-found": "Die App oder Webseite konnte nicht gefunden werden."
+    },
+    "user": {
+        "not-found": "Der Benutzer konnte nicht gefunden werden."
+    },
+    "offer": {
+        "add": "Angebot hinzufügen",
+        "edit": "Angebot bearbeiten",
+        "title": "Titel",
+        "description": "Beschreibung",
+        "code": "Code",
+        "link": "Link",
+        "expire-at": "Gültig bis",
+        "updated": "Aktualisiert am",
+        "count": "{{count}} Angebot(e)",
+        "show": "Code und Link einblenden",
+        "hide": "Code und Link ausblenden",
+        "disabled": "Klicke auf das Auge, um Code und Link einzublenden."
+    },
+    "logout": "Abmelden",
+    "register": "Zur Registrierung",
+    "search": "Suche",
+    "copy-to-clipboard": "Code kopieren",
+    "show-offers": "Zu den Angeboten",
+    "description": {
+        "1": "Freunde werden Freunde ist eine deutsche Community von Menschen, die Freundschaftswerbungscodes und Empfehlungslinks teilen.",
+        "2": "Wir ermöglichen jedem Startguthaben, Rabatt oder Gutschrift auf Dienstleistungen und Produkte zu erhalten.",
+        "3": "Als registrierter Nutzer kannst du dir Werbeprämien sichern, indem du deine persönlichen Codes und Links teilst."
+    },
+    "how": "Wie funtioniert es?",
+    "find": {
+        "title": "Angebot finden",
+        "description": {
+            "1": "Die Angebote stehen jedem Besucher zur Verfügung.",
+            "2": "Auf der Hauptseite kannst du nach einer App oder Webseite suchen. Hierfür kannst du nach Namen suchen, nach Kategorie filtern, nach Logo suchen, nach Namen, Zufriedenheit oder Anzahl der Angeboten sortieren und nach Art (App aus dem App Store oder Google Play Store oder Webseite) filtern.",
+            "3": "Auf der Angebotsseite einer App oder Webseite kannst du die Angebote nach Datum, Zufriedenheit oder Anzahl der Ansichten sortieren."
+        }
+    },
+    "use": {
+        "title": "Angebot nutzen",
+        "description": {
+            "1": "Hast du ein Angebot gefunden, das dir gefällt?",
+            "2": "Der passende Code oder Link lässt sich durch einen Klick auf das Auge einblenden.",
+            "3": "Ist ein Code notwendig, wird dir angeboten diesen in die Zwischenablage zu kopieren. Das solltest du tun bevor du zur App oder Webseite wechselst, indem du auf den \"Code kopieren\" Button klickst.",
+            "4": "Mit einem Klick auf \"Zur Registrierung\" wechselst du zur Registrierungsseite der App oder Webseite."
+        }
+    },
+    "publish": {
+        "title": "Angebot veröffentlichen",
+        "description": {
+            "1": "Um selber ein Angebot veröffentlichen zu können, musst du dich über das Facebook Login authentifizieren. So schaltest du zusätzliche Features frei.",
+            "2": "Auf den Angebotsseiten erscheint ein \"Angebot hinzufügen\" Button. Du kannst für jede App oder Webseite maximal ein Angebot veröffentlichen.",
+            "3": "Du erhälst Zugang zu deinem Angebotverwaltungsbereich. Dort findest du eine Übersicht von allen deinen Angeboten, kannst überprüfen wie gut sie ankommen und diese bearbeiten."
+        }
+    },
+    "missing-app": {
+        "title": "App oder Webseite vorschlagen",
+        "description": {
+            "1": "Du würdest gern ein Angebot veröffentlichen, kannst aber die App oder Webseite auf der Plattform nicht finden.",
+            "2": "Eine App oder Webseite kannst du per Formular vorschlagen.",
+            "3": "Erfüllt diese unsere Kriterien, ergänzen wir diese schnellstmöglichst und geben dir auf Wunsch Bescheid, damit du als erste(r) dein Angebot veröffentlichen kannst."
+        }
+    }
+}

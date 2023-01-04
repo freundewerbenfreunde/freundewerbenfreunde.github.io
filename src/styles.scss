@@ -1,0 +1,72 @@
+@use '@angular/material' as mat;
+@use './src/card-theme' as card;
+@use './src/grid-list-theme' as grid-list;
+
+@include mat.core();
+
+$freunde-werben-freunde-primary: mat.define-palette(mat.$blue-grey-palette);
+$freunde-werben-freunde-accent: mat.define-palette(mat.$blue-palette);
+$freunde-werben-freunde-warn: mat.define-palette(mat.$red-palette);
+
+$freunde-werben-freunde-light-theme: mat.define-light-theme((color: (primary: $freunde-werben-freunde-primary,
+        accent: $freunde-werben-freunde-accent,
+        warn: $freunde-werben-freunde-warn,
+      )));
+
+$freunde-werben-freunde-dark-theme: mat.define-dark-theme((color: (primary: $freunde-werben-freunde-primary,
+        accent: $freunde-werben-freunde-accent,
+        warn: $freunde-werben-freunde-warn,
+      )));
+
+@include mat.all-component-themes($freunde-werben-freunde-light-theme);
+@include card.theme($freunde-werben-freunde-light-theme);
+@include grid-list.theme($freunde-werben-freunde-light-theme);
+
+.dark-theme {
+  @include mat.all-component-colors($freunde-werben-freunde-dark-theme);
+  @include card.theme($freunde-werben-freunde-dark-theme);
+  @include grid-list.theme($freunde-werben-freunde-dark-theme);
+}
+
+@import "@fontsource/roboto/latin-400.css";
+@import '@material-design-icons/font/filled.css';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.header div {
+  text-align: center;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.mat-toolbar .mdc-evolution-chip-set__chips {
+  justify-content: center;
+}
+
+.not-found {
+  position:absolute;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  left:0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .mat-icon {
+    width: 96px;
+    min-width: 96px;
+    height: 96px;
+    font-size: 96px;
+    margin-right: 16px;
+  }
+}
