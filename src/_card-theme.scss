@@ -24,6 +24,7 @@
         height: 64px;
         width: auto;
         border-radius: 0%;
+        margin-bottom: 0px;
 
         &.material-icons {
           height: 96px;
@@ -38,6 +39,10 @@
         img {
           margin-right: 8px;
         }
+      }
+
+      .mat-mdc-card-header {
+        align-items: center;
       }
 
       .mat-mdc-card-footer {
