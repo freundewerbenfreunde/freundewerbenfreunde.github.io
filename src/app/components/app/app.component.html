@@ -1,5 +1,10 @@
 <div>
-    <div *ngIf="app; else appNotFoundTemplate">
+    <ng-container
+        *ngTemplateOutlet="app ? app['key'] == 'notfound'? appNotFoundTemplate: defaultTemplate : loadingTemplate">
+    </ng-container>
+</div>
+<ng-template #defaultTemplate>
+    <div *ngIf="app">
         <mat-card>
             <mat-card-header>
                 <img mat-card-avatar src="{{app['img']}}" />
@@ -137,7 +142,9 @@
             </mat-grid-tile>
         </mat-grid-list>
     </div>
-</div>
+</ng-template>
+<ng-template #loadingTemplate>
+</ng-template>
 <ng-template #appNotFoundTemplate>
     <div class="not-found">
         <mat-icon>sentiment_very_dissatisfied</mat-icon>

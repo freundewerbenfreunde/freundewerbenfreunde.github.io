@@ -31,8 +31,8 @@ export class OfferDialogComponent {
       this.appKey = data.appKey;
       fwfService.getApp(data.appKey).subscribe(
         {
-          next: (app?: ObjectType) => {
-            if (app) {
+          next: (app: ObjectType) => {
+            if (app['key'] != 'notfound') {
               this.appImg = app['img'] as string;
               this.appName = app['name'] as string;
             }
@@ -44,8 +44,8 @@ export class OfferDialogComponent {
       this.offerKey = data.offerKey;
       fwfService.getOffer(data.offerKey).subscribe(
         {
-          next: (offer?: ObjectType) => {
-            if (offer) {
+          next: (offer: ObjectType) => {
+            if (offer['key'] != 'notfound') {
               this.appKey = offer['app'] as string;
               this.appImg = offer['appImg'] as string;
               this.appName = offer['appName'] as string;

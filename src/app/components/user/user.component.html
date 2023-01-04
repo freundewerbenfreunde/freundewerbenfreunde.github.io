@@ -1,5 +1,10 @@
 <div>
-    <div *ngIf="user; else userNotFoundTemplate">
+    <ng-container
+        *ngTemplateOutlet="user ? user['key'] == 'notfound'? userNotFoundTemplate: defaultTemplate : loadingTemplate">
+    </ng-container>
+</div>
+<ng-template #defaultTemplate>
+    <div *ngIf="user">
         <mat-card>
             <mat-card-header>
                 <img mat-card-avatar src="{{user['img']}}" />
@@ -119,7 +124,9 @@
             </mat-grid-tile>
         </mat-grid-list>
     </div>
-</div>
+</ng-template>
+<ng-template #loadingTemplate>
+</ng-template>
 <ng-template #userNotFoundTemplate>
     <div class="not-found">
         <mat-icon>sentiment_very_dissatisfied</mat-icon>

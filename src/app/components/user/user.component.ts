@@ -31,7 +31,7 @@ export class UserComponent extends ResizeableComponent {
   private refreshUser(): void {
     this.fwfService.getUser(this.userKey).subscribe(
       {
-        next: (user?: ObjectType) => {
+        next: (user: ObjectType) => {
           this.user = user;
         }
       });

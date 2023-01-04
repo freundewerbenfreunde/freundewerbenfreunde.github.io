@@ -33,7 +33,7 @@ export class AppComponent extends ResizeableComponent {
   private refreshApp(): void {
     this.fwfService.getApp(this.appKey).subscribe(
       {
-        next: (app?: ObjectType) => {
+        next: (app: ObjectType) => {
           this.app = app;
         }
       });

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ObjectType } from 'deta/dist/types/types/basic';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
@@ -65,7 +65,7 @@ export class FWFService {
     }
     this.getUser(this.userKey).subscribe(
       {
-        next: (user?: ObjectType) => {
+        next: (user: ObjectType) => {
           this._user.next(user);
         }
       }
@@ -93,18 +93,11 @@ export class FWFService {
     return this.http.get<ObjectType[]>(this.baseUrl + '/apps', { params: params });
   }
 
-  getApp(appKey: string): Observable<ObjectType | undefined> {
-    return this.http.get<ObjectType>(this.baseUrl + '/apps/' + appKey, { observe: 'response' })
-      .pipe(
-        map(response => {
-          if (!response.ok) {
-            return undefined;
-          }
-          else {
-            return response.body!;
-          }
-        })
-      );
+  getApp(appKey: string): Observable<ObjectType> {
+    return this.http.get<ObjectType>(this.baseUrl + '/apps/' + appKey)
+      .pipe(catchError((err: HttpErrorResponse) => {
+        return of({ 'key': 'notfound' });
+      }));
   }
 
   makeAppProposal(proposal: ObjectType): Observable<void> {
@@ -176,17 +169,11 @@ export class FWFService {
     return this.http.put<void>(this.baseUrl + '/users/' + this.userKey, user);
   }
 
-  getUser(userKey: string): Observable<ObjectType | undefined> {
-    return this.http.get<ObjectType>(this.baseUrl + '/users/' + userKey, { observe: 'response' })
-      .pipe(map(response => {
-        if (!response.ok) {
-          return undefined;
-        }
-        else {
-          return response.body!;
-        }
-      })
-      );
+  getUser(userKey: string): Observable<ObjectType> {
+    return this.http.get<ObjectType>(this.baseUrl + '/users/' + userKey)
+      .pipe(catchError((err: HttpErrorResponse) => {
+        return of({ 'key': 'notfound' });
+      }));
   }
 
   deleteUser(): Observable<void> {
@@ -205,17 +192,11 @@ export class FWFService {
       { params: params });
   }
 
-  getOffer(offerKey: string): Observable<ObjectType | undefined> {
-    return this.http.get<ObjectType>(this.baseUrl + '/offers/' + offerKey, { observe: 'response' })
-      .pipe(map(response => {
-        if (!response.ok) {
-          return undefined;
-        }
-        else {
-          return response.body!;
-        }
-      })
-      );
+  getOffer(offerKey: string): Observable<ObjectType> {
+    return this.http.get<ObjectType>(this.baseUrl + '/offers/' + offerKey)
+      .pipe(catchError((err: HttpErrorResponse) => {
+        return of({ 'key': 'notfound' });
+      }));
   }
 
   createOffer(offer: ObjectType): Observable<void> {
