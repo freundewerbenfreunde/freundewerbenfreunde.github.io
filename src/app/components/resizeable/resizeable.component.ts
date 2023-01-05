@@ -30,7 +30,7 @@ export abstract class ResizeableComponent extends AbstractComponent {
 
   private resize(): void {
     let width = this.container!.nativeElement.offsetWidth;
-    this.cols = Math.max(1, Math.floor(width / 400));
+    this.cols = Math.max(1, Math.min(4, Math.floor(width / 400)));
     this.rowHeight = Math.max(this.getMinRowHeight(), this.getFactor() / (width / this.cols));
     if (width <= 600) {
       this.margin = 0;
