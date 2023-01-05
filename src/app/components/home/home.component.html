@@ -1,8 +1,4 @@
 <div #container>
-    <ng-container *ngTemplateOutlet="altPage ? altPageTemplate : defaultTemplate; context: { $implicit: altPage }">
-    </ng-container>
-</div>
-<ng-template #defaultTemplate>
     <div class="mat-toolbar">
         <form>
             <mat-form-field>
@@ -164,12 +160,4 @@
             </mat-grid-tile-footer>
         </mat-grid-tile>
     </mat-grid-list>
-</ng-template>
-<ng-template #altPageTemplate let-page>
-    <ng-container [ngSwitch]="page">
-        <app-account-deletion *ngSwitchCase="'deletion'"></app-account-deletion>
-        <app-termsofuse *ngSwitchCase="'termsofuse'"></app-termsofuse>
-        <app-privacy *ngSwitchCase="'privacy'"></app-privacy>
-        <app-imprint *ngSwitchCase="'imprint'"></app-imprint>
-    </ng-container>
-</ng-template>
+</div>

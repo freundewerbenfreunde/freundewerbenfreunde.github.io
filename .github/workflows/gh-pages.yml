@@ -14,7 +14,9 @@ jobs:
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
-      with:
+      with:Chat schließen
+
+
         node-version: '16'
 
     - name: Install dependencies
@@ -23,12 +25,13 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: Create 404.html
+    - name: Create additional pages
       run: |
         cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/404.html
         cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/termsofuse.html
         cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/privacy.html
         cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/imprint.html
+        cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/account-deletion.html
 
     - name: Deploy
       if: success()

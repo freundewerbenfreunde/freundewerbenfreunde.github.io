@@ -13,7 +13,6 @@ import { ResizeableComponent } from '../resizeable/resizeable.component';
 })
 export class HomeComponent extends ResizeableComponent {
 
-  altPage: string | null = null;
   search?: string;
   category?: string;
   sortBy: string = 'name';
@@ -22,11 +21,8 @@ export class HomeComponent extends ResizeableComponent {
   allApps: ObjectType[] = [];
   apps: ObjectType[] = [];
 
-  constructor(fwfService: FWFService, route: ActivatedRoute, private dialog: MatDialog) {
+  constructor(fwfService: FWFService, private dialog: MatDialog) {
     super(fwfService);
-    route.queryParamMap.subscribe(queryParamMap => {
-      this.altPage = queryParamMap.get('page');
-    });
   }
 
   override ngOnInit(): void {
