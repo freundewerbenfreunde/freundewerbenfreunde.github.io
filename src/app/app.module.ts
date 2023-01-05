@@ -45,7 +45,7 @@ import { OffersComponent } from './components/offers/offers.component';
 import { OfferDialogComponent } from './components/offer-dialog/offer-dialog.component';
 import { UserComponent } from './components/user/user.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { ImpressumComponent } from './components/static/impressum.component';
+import { ImprintComponent } from './components/static/imprint.component';
 import { TermsOfUseComponent } from './components/static/termsofuse.component';
 import { PrivacyComponent } from './components/static/privacy.component';
 import { AccountDeletionComponent } from './components/static/account-deletion.component';
@@ -87,7 +87,7 @@ export function tokenGetter() {
     OfferDialogComponent,
     ProfileComponent,
     UserComponent,
-    ImpressumComponent,
+    ImprintComponent,
     TermsOfUseComponent,
     PrivacyComponent,
     AccountDeletionComponent,

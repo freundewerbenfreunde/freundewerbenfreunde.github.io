@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-impressum',
-  templateUrl: './impressum.component.html',
+  selector: 'app-imprint',
+  templateUrl: './imprint.component.html',
   styleUrls: ['./static.component.scss']
 })
-export class ImpressumComponent {
+export class ImprintComponent {
 
 }
