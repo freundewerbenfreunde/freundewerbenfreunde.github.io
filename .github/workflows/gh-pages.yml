@@ -25,10 +25,10 @@ jobs:
 
     - name: Create 404.html
       run: |
-      cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/404.html
-      cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/termsofuse.html
-      cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/privacy.html
-      cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/imprint.html
+        cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/404.html
+        cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/termsofuse.html
+        cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/privacy.html
+        cp dist/freunde-werben-freunde/index.html dist/freunde-werben-freunde/imprint.html
 
     - name: Deploy
       if: success()
