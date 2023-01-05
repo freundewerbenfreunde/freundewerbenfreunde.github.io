@@ -32,13 +32,13 @@
           </button>
           <mat-menu #menu="matMenu">
             <a *ngIf="me" mat-menu-item routerLink="/profile">
-              <mat-icon>person</mat-icon><span>{{'profile.title' | translate}}</span>
+              <mat-icon>person</mat-icon><span>{{'user.profile' | translate}}</span>
             </a>
             <a *ngIf="me" mat-menu-item routerLink="/offers">
-              <mat-icon>local_offer</mat-icon><span>{{'offers' | translate}}</span>
+              <mat-icon>local_offer</mat-icon><span>{{'user.offers' | translate}}</span>
             </a>
             <button mat-menu-item (click)="signOut()">
-              <mat-icon>logout</mat-icon>{{'logout' | translate}}
+              <mat-icon>logout</mat-icon>{{'user.logout' | translate}}
             </button>
           </mat-menu>
         </div>

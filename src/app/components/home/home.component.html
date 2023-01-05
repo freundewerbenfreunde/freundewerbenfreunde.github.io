@@ -6,7 +6,7 @@
     <div class="mat-toolbar">
         <form>
             <mat-form-field>
-                <input type="text" matInput placeholder="{{'search' | translate}}" name="search" [(ngModel)]="search">
+                <input type="text" matInput placeholder="{{'home.search' | translate}}" name="search" [(ngModel)]="search">
                 <button matSuffix mat-button (click)="searchApp()">
                     <mat-icon>search</mat-icon>
                 </button>
@@ -76,7 +76,7 @@
             <mat-grid-tile-footer>
                 <div>
                     <a mat-flat-button color="accent" [routerLink]="'/apps/' + app['key']">
-                        {{'show-offers' | translate}}
+                        {{'home.show-offers' | translate}}
                     </a>
                 </div>
             </mat-grid-tile-footer>
@@ -85,14 +85,14 @@
     <mat-card>
         <mat-card-header>
             <mat-icon color="accent" mat-card-avatar>favorite</mat-icon>
-            <h3>{{'description.1' | translate}}</h3>
+            <h3>{{'home.description.1' | translate}}</h3>
         </mat-card-header>
         <mat-card-content>
-            <p>{{'description.2' | translate}}</p>
-            <p>{{'description.3' | translate}}</p>
+            <p>{{'home.description.2' | translate}}</p>
+            <p>{{'home.description.3' | translate}}</p>
         </mat-card-content>
     </mat-card>
-    <h4>{{'how' | translate}}</h4>
+    <h4>{{'home.how' | translate}}</h4>
     <mat-grid-list [cols]="cols" [gutterSize]="gutter + 'px'" [rowHeight]="rowHeight + 'px'"
         [style.margin]="gutter + 'px ' + margin + 'px ' + gutter + 'px ' + margin + 'px'">
         <mat-grid-tile>
@@ -100,14 +100,14 @@
                 <div>
                     <div>
                         <mat-icon class="logo">search</mat-icon>
-                        <span>{{'find.title' | translate}}</span>
+                        <span>{{'home.find.title' | translate}}</span>
                     </div>
                 </div>
             </mat-grid-tile-header>
             <div class="mat-grid-tile-text mat-grid-tile-no-footer">
-                <p>{{'find.description.1' | translate}}</p>
-                <p>{{'find.description.2' | translate}}</p>
-                <p>{{'find.description.3' | translate}}</p>
+                <p>{{'home.find.description.1' | translate}}</p>
+                <p>{{'home.find.description.2' | translate}}</p>
+                <p>{{'home.find.description.3' | translate}}</p>
             </div>
         </mat-grid-tile>
         <mat-grid-tile>
@@ -115,15 +115,15 @@
                 <div>
                     <div>
                         <mat-icon class="logo">content_cut</mat-icon>
-                        <span>{{'use.title' | translate}}</span>
+                        <span>{{'home.use.title' | translate}}</span>
                     </div>
                 </div>
             </mat-grid-tile-header>
             <div class="mat-grid-tile-text mat-grid-tile-no-footer">
-                <p>{{'use.description.1' | translate}}</p>
-                <p>{{'use.description.2' | translate}}</p>
-                <p>{{'use.description.3' | translate}}</p>
-                <p>{{'use.description.4' | translate}}</p>
+                <p>{{'home.use.description.1' | translate}}</p>
+                <p>{{'home.use.description.2' | translate}}</p>
+                <p>{{'home.use.description.3' | translate}}</p>
+                <p>{{'home.use.description.4' | translate}}</p>
             </div>
         </mat-grid-tile>
         <mat-grid-tile>
@@ -131,14 +131,14 @@
                 <div>
                     <div>
                         <mat-icon class="logo">post_add</mat-icon>
-                        <span>{{'publish.title' | translate}}</span>
+                        <span>{{'home.publish.title' | translate}}</span>
                     </div>
                 </div>
             </mat-grid-tile-header>
             <div class="mat-grid-tile-text mat-grid-tile-no-footer">
-                <p>{{'publish.description.1' | translate}}</p>
-                <p>{{'publish.description.2' | translate}}</p>
-                <p>{{'publish.description.3' | translate}}</p>
+                <p>{{'home.publish.description.1' | translate}}</p>
+                <p>{{'home.publish.description.2' | translate}}</p>
+                <p>{{'home.publish.description.3' | translate}}</p>
             </div>
         </mat-grid-tile>
         <mat-grid-tile>
@@ -146,19 +146,19 @@
                 <div>
                     <div>
                         <mat-icon class="logo">engineering</mat-icon>
-                        <span>{{'missing-app.title' | translate}}</span>
+                        <span>{{'home.missing-app.title' | translate}}</span>
                     </div>
                 </div>
             </mat-grid-tile-header>
             <div class="{{'mat-grid-tile-text' + (me? '' : ' mat-grid-tile-no-footer')}}">
-                <p>{{'missing-app.description.1' | translate}}</p>
-                <p>{{'missing-app.description.2' | translate}}</p>
-                <p>{{'missing-app.description.3' | translate}}</p>
+                <p>{{'home.missing-app.description.1' | translate}}</p>
+                <p>{{'home.missing-app.description.2' | translate}}</p>
+                <p>{{'home.missing-app.description.3' | translate}}</p>
             </div>
             <mat-grid-tile-footer *ngIf="me">
                 <div>
                     <button mat-flat-button color="accent" (click)="openAppProposalDialog()">
-                        <mat-icon>description</mat-icon><span>{{'app.form'|translate}}</span>
+                        <mat-icon>description</mat-icon><span>{{'home.missing-app.form'|translate}}</span>
                     </button>
                 </div>
             </mat-grid-tile-footer>
