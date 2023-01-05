@@ -135,7 +135,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["freundewerbenfreunde.deta.dev"],
+        allowedDomains: [environment.backend],
         skipWhenExpired: true
       },
     })

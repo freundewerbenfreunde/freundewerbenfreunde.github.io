@@ -5,13 +5,14 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ObjectType } from 'deta/dist/types/types/basic';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FWFService {
 
-  private baseUrl: string = "https://freundewerbenfreunde.deta.dev";
+  private baseUrl: string = 'https://' + environment.backend;
   private tokenKey = 'access_token';
   private helper = new JwtHelperService();
   private _user = new BehaviorSubject<ObjectType | undefined>(undefined);
