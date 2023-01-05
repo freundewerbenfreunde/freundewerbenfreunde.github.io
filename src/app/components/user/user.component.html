@@ -7,7 +7,10 @@
     <div *ngIf="user">
         <mat-card>
             <mat-card-header>
-                <img mat-card-avatar src="{{user['img']}}" />
+                <img *ngIf="user['img']; else dummyImgTemplate" mat-card-avatar src="{{user['img']}}" />
+                <ng-template #dummyImgTemplate>
+                    <mat-icon mat-card-avatar>person</mat-icon>
+                </ng-template>
                 <mat-card-title>
                     <span>{{user['name']}}</span>
                     <div><span>{{'user.last-login' | translate}}: </span>
