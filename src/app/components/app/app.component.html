@@ -72,7 +72,7 @@
                             <a class="logo" routerLink="{{'/users/' + offer['user']}}">
                                 <img *ngIf="offer['userImg']; else dummyImgTemplate" src="{{offer['userImg']}}" height="48px" width="48px" />
                                 <ng-template #dummyImgTemplate>
-                                    <mat-icon>person</mat-icon>
+                                    <mat-icon color="accent">person</mat-icon>
                                 </ng-template>
                             </a>
                             <div>

@@ -9,7 +9,7 @@
             <mat-card-header>
                 <img *ngIf="user['img']; else dummyImgTemplate" mat-card-avatar src="{{user['img']}}" />
                 <ng-template #dummyImgTemplate>
-                    <mat-icon mat-card-avatar>person</mat-icon>
+                    <mat-icon mat-card-avatar color="accent">person</mat-icon>
                 </ng-template>
                 <mat-card-title>
                     <span>{{user['name']}}</span>
