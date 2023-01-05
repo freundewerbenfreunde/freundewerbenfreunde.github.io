@@ -17,7 +17,12 @@ main {
 }
 
 header {
+
     .mat-toolbar {
+        &.mat-toolbar-row, &.mat-toolbar-single-row {
+            height: 64px;
+        }
+
         justify-content: space-between;
 
         .logo {
