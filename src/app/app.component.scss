@@ -104,6 +104,12 @@ footer {
         }
 
         justify-content: space-around;
+
+        .github {
+            @media (max-width: 599px) {
+                display: none;
+            }
+        }
     }
 }
 

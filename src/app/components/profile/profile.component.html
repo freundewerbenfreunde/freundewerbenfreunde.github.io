@@ -6,14 +6,18 @@
                 <mat-form-field appearance="fill">
                     <mat-label>{{'user.name' | translate}}</mat-label>
                     <input type="text" matInput name="name" formControlName="name" />
-                    <button matSuffix mat-button (click)="updateUser()">
+                    <button matSuffix mat-button (click)="cancelEdit('name')">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                    <button matSuffix mat-button (click)="updateUser()" [disabled]="name.invalid">
                         <mat-icon>save</mat-icon>
                     </button>
                 </mat-form-field>
             </p>
             <ng-template #nameReadOnlyTemplate>
-                <p>{{'user.name' | translate}}:</p>
-                <p><span>{{userForm.value.name}}</span>
+                <p>
+                    <span>{{'user.name' | translate}}:</span>&nbsp;
+                    <span>{{userForm.value.name}}</span>
                     <button mat-button (click)="editField('name')">
                         <mat-icon>edit</mat-icon>
                     </button>
@@ -24,20 +28,29 @@
                     <mat-label>{{'user.img' | translate}}</mat-label>
                     <input type="text" matInput name="img" formControlName="img" />
                     <mat-hint>{{'user.img-hint' | translate}}</mat-hint>
-                    <button matSuffix mat-button (click)="updateUser()">
+                    <button matSuffix mat-button (click)="cancelEdit('img')">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                    <button matSuffix mat-button (click)="updateUser()" [disabled]="img.invalid">
                         <mat-icon>save</mat-icon>
                     </button>
                 </mat-form-field>
             </p>
             <ng-template #imgReadOnlyTemplate>
-                <p>{{'user.img' | translate}}:</p>
-                <p><img src="{{userForm.value.img}}" height="48px" /><button mat-button (click)="editField('img')">
+                <p>
+                    <span>{{'user.img' | translate}}:</span>&nbsp;
+                    <img src="{{userForm.value.img}}" height="48px" />
+                    <button mat-button (click)="editField('img')">
                         <mat-icon>edit</mat-icon>
-                    </button></p>
+                    </button>
+                    <button mat-button (click)="deleteField('img')">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </p>
             </ng-template>
         </form>
-        <p>{{'user.reactions' | translate}}:</p>
         <p>
+            <span>{{'user.reactions' | translate}}:</span>&nbsp;
             <mat-chip-set>
                 <mat-chip>
                     <mat-icon>sentiment_very_satisfied</mat-icon><span>{{me|getStat:'likes'}}</span>
@@ -47,8 +60,10 @@
                 </mat-chip>
             </mat-chip-set>
         </p>
-        <p>{{'user.last-login' | translate}}:</p>
-        <p>{{me['lastLogin']|toDatetime}}</p>
+        <p>
+            <span>{{'user.last-login' | translate}}:</span>&nbsp;
+            <span>{{me['lastLogin']|toDatetime}}</span>
+        </p>
         <h4>{{'user.delete'|translate}}</h4>
         <form [formGroup]="deleteForm">
             <p>

@@ -57,8 +57,24 @@ export class ProfileComponent extends AbstractComponent {
     }
   }
 
+  get name() { return this.userForm.get('name')!; }
+
+  get img() { return this.userForm.get('img')!; }
+
   editField(field: string): void {
     this.edit = field
+  }
+
+  cancelEdit(field: string): void {
+    if (this.me) {
+      this.userForm.get(field)?.setValue(this.me[field] as string);
+    }
+    this.edit = undefined;
+  }
+
+  deleteField(field: string): void {
+    this.userForm.get(field)?.setValue(null);
+    this.updateUser();
   }
 
   updateUser(): void {

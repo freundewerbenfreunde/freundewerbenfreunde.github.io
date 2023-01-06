@@ -19,6 +19,7 @@
       background: mat.get-color-from-palette($background, app-bar);
 
       .mat-grid-tile-header {
+        height: 64px;
         background: rgba(0, 0, 0, .1);
         color: mat.get-color-from-palette($foreground, text);
 
@@ -73,25 +74,26 @@
       }
 
       .mat-grid-tile-text {
-        margin-top: 48px;
-        margin-bottom: 48px;
+        margin-top: 64px;
+        margin-bottom: 64px;
         margin-left: 16px;
         margin-right: 16px;
-        max-height: calc(100% - 96px);
+        max-height: calc(100% - 128px);
         overflow: hidden;
       }
 
       .mat-grid-tile-no-footer {
-        max-height: calc(100% - 48px);
+        max-height: calc(100% - 64px);
         margin-bottom: 0px;
       }
 
       .mat-grid-tile-double-footer {
-        max-height: calc(100% - 144px);
-        margin-bottom: 96px;
+        max-height: calc(100% - 192px);
+        margin-bottom: 128px;
       }
 
       .mat-grid-tile-footer {
+        height: 64px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -99,10 +101,14 @@
         color: mat.get-color-from-palette($foreground, text);
 
         &.double-footer {
-          height: 96px;
+          height: 128px;
         }
 
         div {
+          &.mat-grid-list-text {
+            display: none;
+          }
+          height: 64px;
           display: flex;
           width: 100%;
           justify-content: space-between;
