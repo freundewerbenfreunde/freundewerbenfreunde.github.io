@@ -2,7 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ObjectType } from 'deta/dist/types/types/basic';
-import { Observable } from 'rxjs';
 import { FWFService } from 'src/app/services/fwf.service';
 
 @Component({
@@ -23,8 +22,8 @@ export class OfferDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fwfService: FWFService, formBuilder: FormBuilder) {
     this.form = formBuilder.group({
-      title: ['', [Validators.required, Validators.maxLength(200)]],
-      description: ['', [Validators.required, Validators.maxLength(1200)]],
+      title: ['', [Validators.required, Validators.maxLength(100)]],
+      description: ['', [Validators.required, Validators.maxLength(1000)]],
       code: '',
       link: ['', [Validators.required, OfferDialogComponent.urlValidator]],
       expireAt: null

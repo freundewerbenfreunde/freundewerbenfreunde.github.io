@@ -19,7 +19,7 @@ export class ProfileComponent extends AbstractComponent {
   constructor(fwfService: FWFService, private formBuilder: FormBuilder, private router: Router) {
     super(fwfService);
     this.userForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(200)]],
+      name: ['', [Validators.required, Validators.maxLength(50)]],
       img: ['', [ProfileComponent.imgValidator]],
     });
     this.deleteForm = this.formBuilder.group({
