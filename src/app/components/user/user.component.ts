@@ -118,7 +118,7 @@ export class UserComponent extends ResizeableComponent {
   }
 
   protected override getFactor(): number {
-    return 200000;
+    return 220000;
   }
 
 }
