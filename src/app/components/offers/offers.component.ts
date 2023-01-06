@@ -69,7 +69,7 @@ export class OffersComponent extends ResizeableComponent {
   }
 
   protected override getFactor(): number {
-    return 240000;
+    return 180000;
   }
 
 }

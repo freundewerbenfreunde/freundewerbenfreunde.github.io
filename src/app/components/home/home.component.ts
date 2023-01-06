@@ -93,7 +93,7 @@ export class HomeComponent extends ResizeableComponent {
   }
 
   protected override getFactor(): number {
-    return 160000;
+    return 140000;
   }
 
 }

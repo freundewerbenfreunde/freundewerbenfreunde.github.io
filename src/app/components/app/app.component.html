@@ -70,7 +70,8 @@
                     <div>
                         <div>
                             <a class="logo" routerLink="{{'/users/' + offer['user']}}">
-                                <img *ngIf="offer['userImg']; else dummyImgTemplate" src="{{offer['userImg']}}" height="48px" width="48px" />
+                                <img *ngIf="offer['userImg']; else dummyImgTemplate" src="{{offer['userImg']}}"
+                                    height="48px" width="48px" />
                                 <ng-template #dummyImgTemplate>
                                     <mat-icon color="accent">person</mat-icon>
                                 </ng-template>
@@ -117,7 +118,7 @@
                     <div>
                         <ng-container *ngIf="show == offer['key']; else disabledTemplate">
                             <button *ngIf="offer['code']" [cdkCopyToClipboard]="'' + offer['code']" mat-flat-button
-                                color="accent" aria-label="copy code to clipboard">
+                                color="accent" aria-label="copy code to clipboard" matTooltip="{{offer['code']}}">
                                 <mat-icon>content_cut</mat-icon>
                                 <span>{{'offer.copy-to-clipboard' | translate}}</span>
                             </button>
