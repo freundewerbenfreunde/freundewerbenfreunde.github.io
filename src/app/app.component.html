@@ -27,7 +27,10 @@
             <span>{{'facebook-login' | translate}}</span>
           </button>
           <button *ngIf="me" class="fb-login-button" mat-button [matMenuTriggerFor]="menu">
-            <img src="{{me['img']}}" height="24" />
+            <img *ngIf="me['img']; else dummyImgTemplate" src="{{me['img']}}" height="24px" width="24px" />
+            <ng-template #dummyImgTemplate>
+              <mat-icon>person</mat-icon>
+            </ng-template>
             <span>{{me['name']}}</span>
           </button>
           <mat-menu #menu="matMenu">
