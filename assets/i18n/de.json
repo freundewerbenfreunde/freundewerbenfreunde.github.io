@@ -58,7 +58,7 @@
         "search": "Suche",
         "show-offers": "Zu den Angeboten",
         "description": {
-            "1": "Freunde werden Freunde ist eine deutsche Community von Menschen, die Freundschaftswerbungscodes und Empfehlungslinks teilen.",
+            "1": "Freunde werden Freunde ist eine deutsche Community von Menschen, die Werbungscodes und Empfehlungslinks teilen.",
             "2": "Wir ermöglichen jedem Startguthaben, Rabatt oder Gutschrift auf Dienstleistungen und Produkte zu erhalten.",
             "3": "Als registrierter Nutzer kannst du dir Werbeprämien sichern, indem du deine persönlichen Codes und Links teilst."
         },
@@ -97,5 +97,13 @@
             },
             "form": "Zum Formular"
         }
+    },
+    "cookie": {
+        "message": "Auf dieser Website werden Cookies eingesetzt. Durch die Nutzung dieser Seite werden die Verwendung von notwendigen Cookies und unseren Datenschutzbestimmungen zugestimmt. Optional kann die Verwendung von Cookies zur statistischen Zwecke zugestimmt werden.",
+        "link": "Mehr dazu",
+        "href": "/privacy",
+        "allow": "Alle Cookies",
+        "deny": "Nur notwendige Cookies",
+        "policy": "Cookie-Richtlinie"
     }
 }
