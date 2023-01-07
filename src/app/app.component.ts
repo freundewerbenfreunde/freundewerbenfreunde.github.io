@@ -10,7 +10,6 @@ import { AbstractComponent } from './components/abstract/abstract.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
 import { NgcCookieConsentService, NgcStatusChangeEvent } from 'ngx-cookieconsent';
-import { Router, Event, NavigationEnd } from '@angular/router';
 
 declare const FB: any;
 
@@ -29,7 +28,6 @@ export class AppComponent extends AbstractComponent implements OnDestroy {
     public translate: TranslateService, dateAdapter: DateAdapter<Moment>,
     private themeService: ThemeService,
     private authService: SocialAuthService,
-    private router: Router,
     private gtmService: GoogleTagManagerService,
     fwfService: FWFService,
     ccService: NgcCookieConsentService) {
@@ -69,13 +67,7 @@ export class AppComponent extends AbstractComponent implements OnDestroy {
 
   private handleCookieAllowed(): void {
     if (!this.routerEventsSubscription) {
-      this.routerEventsSubscription = this.router.events.subscribe({
-        next: (event: Event) => {
-          if (event instanceof NavigationEnd) {
-            this.gtmService.pushTag({});
-          }
-        }
-      });
+      this.gtmService.addGtmToDom();
     }
   }
 

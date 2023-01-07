@@ -6,6 +6,8 @@ import { ObjectType } from 'deta/dist/types/types/basic';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from '../../environments/environment';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
+import { NgcCookieConsentService } from 'ngx-cookieconsent';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,9 @@ export class FWFService {
   private userKey?: string;
   user$ = this._user.asObservable();
 
-  constructor(private http: HttpClient, private authService: SocialAuthService) {
+  constructor(private http: HttpClient, private authService: SocialAuthService,
+    private ccSevice: NgcCookieConsentService,
+    private gtmService: GoogleTagManagerService) {
     authService.authState.subscribe({
       next: (socialUser: SocialUser) => {
         if (socialUser == null) {
@@ -78,6 +82,9 @@ export class FWFService {
   }
 
   getApps(search?: string, category?: string, sortBy?: string, source?: string): Observable<ObjectType[]> {
+    if (search && this.ccSevice.hasConsented()) {
+      this.gtmService.pushTag({ 'event': 'search', 'searchTerm': search });
+    }
     let params = new HttpParams();
     if (search) {
       params = params.append('search', search);

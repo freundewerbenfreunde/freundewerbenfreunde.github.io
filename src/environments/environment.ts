@@ -7,7 +7,7 @@ export const environment = {
   facebookClientId: '485957230302704',
   backend: 'freundewerbenfreunde-local.deta.dev',
   frontend: 'localhost',
-  googleTagManagerId: 'G-RXD7H0LTQ9'
+  googleTagManagerId: 'GTM-MGGQZMV'
 };
 
 /*
