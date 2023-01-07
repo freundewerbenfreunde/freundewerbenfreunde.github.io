@@ -82,8 +82,13 @@ export class FWFService {
   }
 
   getApps(search?: string, category?: string, sortBy?: string, source?: string): Observable<ObjectType[]> {
-    if (search && this.ccSevice.hasConsented()) {
-      this.gtmService.pushTag({ 'event': 'search', 'searchTerm': search });
+    if (this.ccSevice.hasConsented()) {
+      if (search) {
+        this.gtmService.pushTag({ 'event': 'search', 'searchTerm': search });
+      }
+      if (category) {
+        this.gtmService.pushTag({ 'event': 'filter', 'criteria': category });
+      }
     }
     let params = new HttpParams();
     if (search) {
