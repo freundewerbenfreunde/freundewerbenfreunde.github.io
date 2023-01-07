@@ -1,7 +1,7 @@
 <div class="profile">
     <h3>{{'user.profile' | translate}}</h3>
     <div *ngIf="me">
-        <form [formGroup]="userForm">
+        <form name="profile" [formGroup]="userForm">
             <p *ngIf="edit == 'name'; else nameReadOnlyTemplate">
                 <mat-form-field appearance="fill">
                     <mat-label>{{'user.name' | translate}}</mat-label>
@@ -65,7 +65,7 @@
             <span>{{me['lastLogin']|toDatetime}}</span>
         </p>
         <h4>{{'user.delete'|translate}}</h4>
-        <form [formGroup]="deleteForm">
+        <form name="account-deletion" [formGroup]="deleteForm">
             <p>
                 <mat-checkbox name="confirmation" formControlName="confirmation">
                     {{'user.confirmation' | translate}}

@@ -138,6 +138,7 @@ export class AppComponent extends ResizeableComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       this.refreshOffers();
+      this.fwfService.refreshUser();
     });
   }
 

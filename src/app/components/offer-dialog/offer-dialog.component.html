@@ -3,7 +3,7 @@
     <div *ngIf="appImg && appName">
         <div class="app"><img src="{{appImg}}" width="48px" height="48px" /><span>{{appName}}</span>
         </div>
-        <form [formGroup]="form">
+        <form name="offer" [formGroup]="form">
             <p>
                 <mat-form-field appearance="fill">
                     <mat-label>{{'offer.title' | translate}}</mat-label>
