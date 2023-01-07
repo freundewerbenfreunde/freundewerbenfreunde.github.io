@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ObjectType } from 'deta/dist/types/types/basic';
 import { FWFService } from 'src/app/services/fwf.service';

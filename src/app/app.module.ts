@@ -55,6 +55,7 @@ import { DatetimePipe } from './datetime-pipe';
 import { StatPipe } from './stat-pipe';
 
 import { environment } from '../environments/environment';
+import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/');
@@ -75,6 +76,30 @@ export const MY_DATE_FORMATS = {
 export function tokenGetter() {
   return localStorage.getItem("access_token");
 }
+
+const cookieConfig: NgcCookieConsentConfig = {
+  content: {
+    close: 'x'
+  },
+  cookie: {
+    domain: environment.frontend,
+    secure: true
+  },
+  layout: 'basic-close',
+  law: {
+    countryCode: 'DE'
+  },
+  palette: {
+    popup: {
+      background: '#000'
+    },
+    button: {
+      background: '#2196f3'
+    }
+  },
+  theme: 'block',
+  type: 'opt-in'
+};
 
 @NgModule({
   declarations: [
@@ -138,7 +163,8 @@ export function tokenGetter() {
         allowedDomains: [environment.backend],
         skipWhenExpired: true
       },
-    })
+    }),
+    NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [
     { provide: DateAdapter, useClass: MomentDateAdapter },
@@ -161,7 +187,8 @@ export function tokenGetter() {
           console.error(err);
         }
       } as SocialAuthServiceConfig,
-    }
+    },
+    {provide: 'googleTagManagerId',  useValue: environment.googleTagManagerId}
   ],
   bootstrap: [AppRootComponent]
 })

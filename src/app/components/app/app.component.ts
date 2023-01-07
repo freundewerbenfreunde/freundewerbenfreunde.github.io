@@ -1,5 +1,5 @@
-import { Component, ElementRef } from '@angular/core';
-import { Router, TitleStrategy } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ObjectType } from 'deta/dist/types/types/basic';
 import { FWFService } from 'src/app/services/fwf.service';
 import { ResizeableComponent } from '../resizeable/resizeable.component';

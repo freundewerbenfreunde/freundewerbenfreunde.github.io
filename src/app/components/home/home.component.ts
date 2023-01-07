@@ -1,6 +1,5 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
 import { ObjectType } from 'deta/dist/types/types/basic';
 import { FWFService } from 'src/app/services/fwf.service';
 import { AppDialogComponent } from '../app-dialog/app-dialog.component';

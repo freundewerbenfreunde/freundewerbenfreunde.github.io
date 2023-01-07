@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { ObjectType } from 'deta/dist/types/types/basic';
 import { FWFService } from 'src/app/services/fwf.service';
 import { ResizeableComponent } from '../resizeable/resizeable.component';
