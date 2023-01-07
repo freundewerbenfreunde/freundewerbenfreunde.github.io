@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ObjectType } from 'deta/dist/types/types/basic';
+import * as moment from 'moment';
 import { FWFService } from 'src/app/services/fwf.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class OfferDialogComponent {
       description: ['', [Validators.required, Validators.maxLength(1000)]],
       code: '',
       link: ['', [Validators.required, OfferDialogComponent.urlValidator]],
-      expireAt: ['', [OfferDialogComponent.expirationValidator]]
+      expireAt: [null, [OfferDialogComponent.expirationValidator]]
     });
     this.edit = data.offerKey != undefined;
     if (data.appKey) {
@@ -56,7 +57,7 @@ export class OfferDialogComponent {
                 description: (offer['description'] as string[]).join('\r\n'),
                 code: offer['code'],
                 link: offer['link'],
-                expireAt: offer['expireAt']
+                expireAt: moment(new Date(offer['expireAt'] as string))
               });
             }
           }
@@ -78,7 +79,7 @@ export class OfferDialogComponent {
   }
 
   private static expirationValidator({ value }: AbstractControl): null | ValidationErrors {
-    if (value && new Date().getTime() >= value.toDate().getTime()) {
+    if (value && value.toDate() < new Date()) {
       return { pattern: true };
     }
     return null;
