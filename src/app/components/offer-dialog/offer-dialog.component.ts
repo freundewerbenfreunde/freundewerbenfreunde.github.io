@@ -26,7 +26,7 @@ export class OfferDialogComponent {
       description: ['', [Validators.required, Validators.maxLength(1000)]],
       code: '',
       link: ['', [Validators.required, OfferDialogComponent.urlValidator]],
-      expireAt: null
+      expireAt: ['', [OfferDialogComponent.expirationValidator]]
     });
     this.edit = data.offerKey != undefined;
     if (data.appKey) {
@@ -75,6 +75,13 @@ export class OfferDialogComponent {
     } catch {
       return { pattern: true };
     }
+  }
+
+  private static expirationValidator({ value }: AbstractControl): null | ValidationErrors {
+    if (value && new Date().getTime() >= value.toDate().getTime()) {
+      return { pattern: true };
+    }
+    return null;
   }
 
   createOrUpdateOffer(): void {
