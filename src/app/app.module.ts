@@ -78,16 +78,14 @@ export function tokenGetter() {
 }
 
 const cookieConfig: NgcCookieConsentConfig = {
-  content: {
-    close: 'x'
-  },
   cookie: {
     domain: environment.frontend,
     secure: true
   },
-  layout: 'basic-close',
+  layout: 'basic',
   law: {
-    countryCode: 'DE'
+    countryCode: 'DE',
+    regionalLaw: false
   },
   palette: {
     popup: {
@@ -97,6 +95,7 @@ const cookieConfig: NgcCookieConsentConfig = {
       background: '#2196f3'
     }
   },
+  revokable: true,
   theme: 'block',
   type: 'opt-in'
 };

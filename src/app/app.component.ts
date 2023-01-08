@@ -9,7 +9,7 @@ import { FWFService } from './services/fwf.service';
 import { AbstractComponent } from './components/abstract/abstract.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
-import { NgcCookieConsentService, NgcStatusChangeEvent } from 'ngx-cookieconsent';
+import { NgcCookieConsentService } from 'ngx-cookieconsent';
 
 declare const FB: any;
 
@@ -22,33 +22,24 @@ export class AppComponent extends AbstractComponent implements OnDestroy {
 
   isDarkTheme: Observable<boolean>;
   private statusChangeSubscription: Subscription;
-  private routerEventsSubscription?: Subscription;
+  private gtmEnabled: boolean = false;
 
   constructor(private overlayContainer: OverlayContainer,
     public translate: TranslateService, dateAdapter: DateAdapter<Moment>,
     private themeService: ThemeService,
     private gtmService: GoogleTagManagerService,
     fwfService: FWFService,
-    ccService: NgcCookieConsentService) {
+    private ccService: NgcCookieConsentService) {
     super(fwfService);
     translate.addLangs(['de']);
     translate.setDefaultLang('de');
     translate.use('de');
     dateAdapter.setLocale('de');
     this.isDarkTheme = this.themeService.isDarkTheme;
-    if (ccService.hasAnswered() && ccService.hasConsented()) {
-      this.handleCookieAllowed();
-    }
+    this.handleCookie();
     this.statusChangeSubscription = ccService.statusChange$.subscribe(
-      (event: NgcStatusChangeEvent) => {
-        console.log(event);
-        if (event.status == 'allow') {
-          this.handleCookieAllowed();
-        }
-        else {
-          this.handleCookieDenied();
-        }
-      });
+      () => this.handleCookie()
+    );
     translate
       .get(['cookie.message', 'cookie.link', 'cookie.href', 'cookie.allow', 'cookie.deny', 'cookie.policy'])
       .subscribe(data => {
@@ -64,14 +55,14 @@ export class AppComponent extends AbstractComponent implements OnDestroy {
       });
   }
 
-  private handleCookieAllowed(): void {
-    if (!this.routerEventsSubscription) {
-      this.gtmService.addGtmToDom();
+  private handleCookie(): void {
+    if (this.ccService.hasConsented() && !this.gtmEnabled) {
+      this.gtmService.addGtmToDom().then(
+        () => {
+          this.gtmEnabled = true;
+        });
     }
-  }
-
-  private handleCookieDenied(): void {
-    if (this.routerEventsSubscription) {
+    if (!this.ccService.hasConsented() && this.gtmEnabled) {
       window.location.reload();
     }
   }
