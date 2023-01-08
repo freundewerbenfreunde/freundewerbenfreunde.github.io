@@ -52,6 +52,14 @@ export class FWFService {
     });
   }
 
+  signIn(providerId: string ): void {
+    this.authService.signIn(providerId);
+  }
+
+  signOut(): void {
+    this.authService.signOut();
+  }
+
   private login(socialUser: SocialUser): Observable<string | null> {
     let user: ObjectType = {};
     user['provider'] = socialUser.provider;
@@ -194,7 +202,7 @@ export class FWFService {
       return of();
     }
     return this.http.delete<void>(this.baseUrl + '/users/' + this.userKey).pipe(
-      tap(_ => this.authService.signOut())
+      tap(_ => this.signOut())
     );
   }
 

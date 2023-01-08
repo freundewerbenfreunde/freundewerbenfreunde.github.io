@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Moment } from 'moment';
 import { Observable, Subscription } from 'rxjs';
 import { ThemeService } from './services/theme.service';
-import { SocialAuthService, FacebookLoginProvider } from "@abacritt/angularx-social-login";
+import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
 import { FWFService } from './services/fwf.service';
 import { AbstractComponent } from './components/abstract/abstract.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -27,7 +27,6 @@ export class AppComponent extends AbstractComponent implements OnDestroy {
   constructor(private overlayContainer: OverlayContainer,
     public translate: TranslateService, dateAdapter: DateAdapter<Moment>,
     private themeService: ThemeService,
-    private authService: SocialAuthService,
     private gtmService: GoogleTagManagerService,
     fwfService: FWFService,
     ccService: NgcCookieConsentService) {
@@ -92,11 +91,11 @@ export class AppComponent extends AbstractComponent implements OnDestroy {
   }
 
   signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.fwfService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
   signOut(): void {
-    this.authService.signOut();
+    this.fwfService.signOut();
   }
 
 }
