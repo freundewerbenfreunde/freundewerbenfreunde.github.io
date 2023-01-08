@@ -40,6 +40,13 @@ body {
   padding: 0;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  .cc-revoke.cc-bottom {
+    left: 16px;
+    bottom: 16px;
+    border-radius: 50%;
+    background-color: #2196f3;
+  }
 }
 
 .header div {
@@ -53,11 +60,11 @@ body {
 }
 
 .not-found {
-  position:absolute;
-  top:0px;
-  right:0px;
-  bottom:0px;
-  left:0px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
