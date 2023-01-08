@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ObjectType } from 'deta/dist/types/types/basic';
@@ -52,7 +52,7 @@ export class FWFService {
     });
   }
 
-  signIn(providerId: string ): void {
+  signIn(providerId: string): void {
     if (this.ccSevice.hasConsented()) {
       this.gtmService.pushTag({ 'event': 'login' });
     }
@@ -75,7 +75,9 @@ export class FWFService {
     return this.http.post(this.baseUrl + '/login',
       user,
       { observe: 'response', responseType: 'text' })
-      .pipe(map(response => response.body));
+      .pipe(
+        catchError(() => of()),
+        map(response => response.body));
   }
 
   refreshUser(): void {
@@ -122,7 +124,7 @@ export class FWFService {
 
   getApp(appKey: string): Observable<ObjectType> {
     return this.http.get<ObjectType>(this.baseUrl + '/apps/' + appKey)
-      .pipe(catchError((err: HttpErrorResponse) => {
+      .pipe(catchError(() => {
         return of({ 'key': 'notfound' });
       }));
   }
@@ -198,7 +200,7 @@ export class FWFService {
 
   getUser(userKey: string): Observable<ObjectType> {
     return this.http.get<ObjectType>(this.baseUrl + '/users/' + userKey)
-      .pipe(catchError((err: HttpErrorResponse) => {
+      .pipe(catchError(() => {
         return of({ 'key': 'notfound' });
       }));
   }
@@ -224,7 +226,7 @@ export class FWFService {
 
   getOffer(offerKey: string): Observable<ObjectType> {
     return this.http.get<ObjectType>(this.baseUrl + '/offers/' + offerKey)
-      .pipe(catchError((err: HttpErrorResponse) => {
+      .pipe(catchError(() => {
         return of({ 'key': 'notfound' });
       }));
   }
