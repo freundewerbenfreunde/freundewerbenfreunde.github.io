@@ -53,10 +53,16 @@ export class FWFService {
   }
 
   signIn(providerId: string ): void {
+    if (this.ccSevice.hasConsented()) {
+      this.gtmService.pushTag({ 'event': 'login' });
+    }
     this.authService.signIn(providerId);
   }
 
   signOut(): void {
+    if (this.ccSevice.hasConsented()) {
+      this.gtmService.pushTag({ 'event': 'logout' });
+    }
     this.authService.signOut();
   }
 
@@ -200,6 +206,9 @@ export class FWFService {
   deleteUser(): Observable<void> {
     if (!this.userKey) {
       return of();
+    }
+    if (this.ccSevice.hasConsented()) {
+      this.gtmService.pushTag({ 'event': 'delete_account' });
     }
     return this.http.delete<void>(this.baseUrl + '/users/' + this.userKey).pipe(
       tap(_ => this.signOut())
