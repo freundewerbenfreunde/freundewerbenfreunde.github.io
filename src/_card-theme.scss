@@ -32,12 +32,16 @@
         }
       }
 
+      .mat-mdc-card-title,
       .mat-mdc-card-subtitle {
         display: flex;
         align-items: center;
 
         img {
           margin-right: 8px;
+        }
+        mat-icon {
+          margin-left: 4px;
         }
       }
 

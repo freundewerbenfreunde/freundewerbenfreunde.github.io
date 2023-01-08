@@ -60,6 +60,10 @@
                 </mat-chip>
             </mat-chip-set>
         </p>
+        <p><span>{{'user.autoupdate' | translate}}:</span>&nbsp;
+            <span *ngIf="me['autoupdate']">{{'on' | translate}}</span>
+            <span *ngIf="!me['autoupdate']">{{'off' | translate}}</span>
+        </p>
         <p>
             <span>{{'user.last-login' | translate}}:</span>&nbsp;
             <span>{{me['lastLogin']|toDatetime}}</span>

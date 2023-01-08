@@ -16,6 +16,8 @@
         "web": "Website"
     },
     "cancel": "Abbrechen",
+    "on": "aktiv",
+    "off": "inaktiv",
     "user": {
         "profile": "Profil",
         "name": "Name",
@@ -27,7 +29,8 @@
         "confirmation": "Ja, ich will mein Konto unwiderruflich löschen. Die damit verbundenen Daten werden umgehend gelöscht. Eine Wiederherstellung der gelöschten Daten is nicht möglich.",
         "not-found": "Der Benutzer konnte nicht gefunden werden.",
         "offers": "Meine Angebote",
-        "logout": "Abmelden"
+        "logout": "Abmelden",
+        "autoupdate": "Auto Aktualisierung"
     },
     "app": {
         "add": "App oder Webseite vorschlagen",

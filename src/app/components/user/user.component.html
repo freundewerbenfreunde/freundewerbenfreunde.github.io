@@ -13,10 +13,14 @@
                 </ng-template>
                 <mat-card-title>
                     <span>{{user['name']}}</span>
+                    <mat-icon *ngIf="user['autoupdate']" color="accent" matTooltip="{{'user.autoupdate'|translate}}">
+                        sync</mat-icon>
+                </mat-card-title>
+                <mat-card-subtitle>
                     <div><span>{{'user.last-login' | translate}}: </span>
                         <span>{{user['lastLogin']|toDatetime}}</span>
                     </div>
-                </mat-card-title>
+                </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content></mat-card-content>
             <mat-card-footer>
