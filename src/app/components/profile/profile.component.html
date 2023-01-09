@@ -1,6 +1,14 @@
 <div class="profile">
     <h3>{{'user.profile' | translate}}</h3>
     <div *ngIf="me">
+        <p>
+            <span>{{'user.id' | translate}}:</span>&nbsp;
+            <span>{{me['key']}}</span>
+            <button [cdkCopyToClipboard]="'' + me['key']" mat-button aria-label="copy user id to clipboard"
+                matTooltip="{{'user.copy-user-id-to-clipboard' | translate}}">
+                <mat-icon>content_cut</mat-icon>
+            </button>
+        </p>
         <form name="profile" [formGroup]="userForm">
             <p *ngIf="edit == 'name'; else nameReadOnlyTemplate">
                 <mat-form-field appearance="fill">

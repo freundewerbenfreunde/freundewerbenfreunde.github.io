@@ -36,12 +36,20 @@
       .mat-mdc-card-subtitle {
         display: flex;
         align-items: center;
+      }
 
+      .mat-mdc-card-title {
+        mat-icon {
+          margin-left: 4px;
+        }
+      }
+
+      .mat-mdc-card-subtitle {
         img {
           margin-right: 8px;
         }
         mat-icon {
-          margin-left: 4px;
+          margin-right: 4px;
         }
       }
 

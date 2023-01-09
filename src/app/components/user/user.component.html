@@ -14,10 +14,11 @@
                 <mat-card-title>
                     <span>{{user['name']}}</span>
                     <mat-icon *ngIf="user['autoupdate']" color="accent" matTooltip="{{'user.autoupdate'|translate}}">
-                        sync</mat-icon>
+                        rocket</mat-icon>
                 </mat-card-title>
                 <mat-card-subtitle>
-                    <div><span>{{'user.last-login' | translate}}: </span>
+                    <div matTooltip="{{'user.last-login' | translate}}">
+                        <mat-icon>login</mat-icon>
                         <span>{{user['lastLogin']|toDatetime}}</span>
                     </div>
                 </mat-card-subtitle>
@@ -66,7 +67,7 @@
                                 <span>{{offer['appName']}}</span>
                                 <div>
                                     <div matTooltip="{{'offer.updated'|translate}}">
-                                        <mat-icon>sync</mat-icon>
+                                        <mat-icon>{{offer['autoupdate'] ? 'rocket' : 'sync'}}</mat-icon>
                                         <span>{{offer['updated'] | toDate}}</span>
                                     </div>
                                     <div *ngIf="offer['expireAt']" matTooltip="{{'offer.expire-at'|translate}}">
@@ -106,7 +107,7 @@
                             <button *ngIf="offer['code']" [cdkCopyToClipboard]="'' + offer['code']" mat-flat-button
                                 color="accent" aria-label="copy code to clipboard" matTooltip="{{offer['code']}}">
                                 <mat-icon>content_cut</mat-icon>
-                                <span>{{'offer.copy-to-clipboard' | translate}}</span>
+                                <span>{{'offer.copy-code-to-clipboard' | translate}}</span>
                             </button>
                             <a color="accent" mat-flat-button color="accent" aria-label="open registration page"
                                 href="{{offer['link']}}" target="_blank">
@@ -119,7 +120,7 @@
                                 <button *ngIf="offer['code']" mat-flat-button aria-label="copy code to clipboard"
                                     disabled>
                                     <mat-icon>content_cut</mat-icon>
-                                    <span>{{'offer.copy-to-clipboard' | translate}}</span>
+                                    <span>{{'offer.copy-code-to-clipboard' | translate}}</span>
                                 </button>
                                 <a mat-flat-button aria-label="open registration page" disabled>
                                     <mat-icon>open_in_new</mat-icon>

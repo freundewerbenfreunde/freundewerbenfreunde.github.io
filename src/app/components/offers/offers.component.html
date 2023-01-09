@@ -36,13 +36,17 @@
                                 <span>{{offer['appName']}}</span>
                                 <div>
                                     <div matTooltip="{{'offer.updated'|translate}}">
-                                        <mat-icon>sync</mat-icon>
-                                        <span>{{offer['updated'] | toDatetime}}</span>
+                                        <mat-icon>{{offer['autoupdate'] ? 'rocket' : 'sync'}}</mat-icon>
+                                        <span>{{offer['updated'] | toDate}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div>
+                            <button [cdkCopyToClipboard]="'' + offer['key']" mat-button aria-label="copy offer id to clipboard"
+                                matTooltip="{{'offer.copy-offer-id-to-clipboard' | translate}}">
+                                <mat-icon>content_cut</mat-icon>
+                            </button>
                             <button mat-button (click)="editOffer(offer['key'])">
                                 <mat-icon>edit</mat-icon>
                             </button>
