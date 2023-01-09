@@ -20,6 +20,7 @@
     "off": "inaktiv",
     "user": {
         "profile": "Profil",
+        "id": "User ID",
         "name": "Name",
         "img": "Profilbild",
         "img-hint": "Link zu einem öffentlich verfügbaren Bild, das dir gehört",
@@ -30,7 +31,8 @@
         "not-found": "Der Benutzer konnte nicht gefunden werden.",
         "offers": "Meine Angebote",
         "logout": "Abmelden",
-        "autoupdate": "Auto Aktualisierung"
+        "autoupdate": "Auto Aktualisierung",
+        "copy-user-id-to-clipboard": "User ID kopieren"
     },
     "app": {
         "add": "App oder Webseite vorschlagen",
@@ -44,6 +46,7 @@
         "add": "Angebot hinzufügen",
         "edit": "Angebot bearbeiten",
         "save": "Speichern",
+        "id": "Angebot ID",
         "title": "Titel",
         "description": "Beschreibung",
         "code": "Code",
@@ -55,7 +58,8 @@
         "hide": "Code und Link ausblenden",
         "disabled": "Klicke auf das Auge, um Code und Link einzublenden.",
         "register": "Zur Registrierung",
-        "copy-to-clipboard": "Code kopieren"
+        "copy-code-to-clipboard": "Code kopieren",
+        "copy-offer-id-to-clipboard": "Angebot ID kopieren"
     },
     "home": {
         "search": "Suche",
